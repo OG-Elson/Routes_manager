@@ -1,0 +1,23 @@
+{
+  "markets": [
+    {
+      "currency": "EUR",
+      "buy_price": 0.86,
+      "sell_price": 0.88,
+      "fee_pct": 0.1,
+      "name": "Europe"
+    },
+    {
+      "currency": "XAF",
+      "buy_price": 605,
+      "sell_price": 620,
+      "fee_pct": 0.0,
+      "name": "Afrique Centrale"
+    }
+  ],
+  "forex_rates": {
+    "XAF/EUR": 655.957
+  },
+  "SEUIL_RENTABILITE_PCT": 1.5,
+  "NB_CYCLES_PAR_ROTATION": 3
+}

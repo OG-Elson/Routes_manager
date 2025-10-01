@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.cpython-*.pyc
+
+# Logs
+*.log
+app.log
+
+# Données sensibles
+config.json
+debriefing.csv
+network_health.csv
+rotation_state.json
+rotation_plan_*.json
+transactions*.csv
+
+# Rapports et outputs
+reports_detailed/
+test_reports/
+test_output/
+simulations/
+simulations_backup*/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
