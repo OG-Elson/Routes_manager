@@ -16,7 +16,7 @@ build/
 app.log
 
 # Données sensibles
-config.json
+#config.json
 debriefing.csv
 network_health.csv
 rotation_state.json

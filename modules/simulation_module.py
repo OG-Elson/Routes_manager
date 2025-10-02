@@ -32,7 +32,66 @@ class SimulationEngine:
         self.simulation_dir = None
         self.config = self._load_config()
         self.manager = RotationManager()
-    
+
+    def _get_confirmed_input(self, prompt, validation_func=None, error_msg="Saisie invalide."):
+        """Saisie sécurisée avec option annuler"""
+        while True:
+            try:
+                value = console.input(prompt)
+                if value.lower() == 'annuler':
+                    if Confirm.ask("Êtes-vous sûr de vouloir annuler la simulation ?"):
+                        return None
+                    else:
+                        continue
+                if validation_func is None or validation_func(value):
+                    return value
+                console.print(f"[bold red]{error_msg}[/bold red]")
+            except KeyboardInterrupt:
+                console.print("\n[yellow]⚠️  Simulation interrompue[/yellow]")
+                return None
+            
+    def _get_numeric_input(self, prompt, input_type=float, min_val=0):
+        """Saisie numérique ultra-sécurisée (copie de daily_briefing_bis)"""
+        def is_valid_number(v):
+            try:
+                # Gestion valeur vide
+                if not v or v.strip() == '':
+                    return False
+                num = input_type(v.replace(',', '.'))
+                if input_type == float and (num < min_val or num > 1000000):
+                    return False
+                # Vérification NaN et infini
+                if num != num or num == float('inf') or num == float('-inf'):
+                    return False
+                return num >= min_val
+            except (ValueError, OverflowError):
+                return False
+        
+        while True:
+            value_str = self._get_confirmed_input(
+                prompt + " (tapez 'annuler' pour quitter) : ",
+                is_valid_number,
+                f"Nombre invalide (min: {min_val}, max: 1,000,000) ou valeur vide"
+            )
+            if value_str is None:
+                return None
+            
+            # Vérification valeur vide explicite
+            if not value_str or value_str.strip() == '':
+                console.print("[bold red]Vous n'avez entré aucune valeur. Veuillez entrer un nombre ou 'annuler'.[/bold red]")
+                continue
+                
+            try:
+                result = input_type(value_str.replace(',', '.'))
+                # Double vérification post-conversion
+                if result != result or result == float('inf') or result == float('-inf'):
+                    console.print("[bold red]Valeur invalide (NaN/Infini détecté)[/bold red]")
+                    continue
+                return result
+            except (ValueError, OverflowError):
+                console.print("[bold red]Erreur de conversion numérique[/bold red]")
+                continue
+
     def _load_config(self):
         """Charge la configuration"""
         with open('config.json', 'r') as f:
@@ -68,60 +127,78 @@ class SimulationEngine:
         available_currencies = [m['currency'] for m in self.config['markets']]
         console.print(f"\n[yellow]Monnaies disponibles :[/yellow] {', '.join(available_currencies)}")
         
-        sourcing_currency = Prompt.ask(
-            "Monnaie de sourcing",
-            choices=available_currencies,
-            default="EUR"
+        sourcing_currency = self._get_confirmed_input(
+            f"Monnaie de sourcing (options: {'/'.join(available_currencies)}) : ",
+            lambda x: x.upper() in available_currencies,
+            f"Devise invalide. Choix : {', '.join(available_currencies)}"
         )
+        if sourcing_currency is None:
+            return None
+        sourcing_currency = sourcing_currency.upper()
         
-        # 2. Capital initial (en monnaie de sourcing)
-        initial_capital = FloatPrompt.ask(
+        # 2. Capital initial
+        initial_capital = self._get_numeric_input(
             f"Capital initial en {sourcing_currency}",
-            default=1000.0
+            float, 0
         )
+        if initial_capital is None:
+            return None
         
         # 3. Nombre de cycles
-        nb_cycles = IntPrompt.ask(
+        nb_cycles = self._get_numeric_input(
             "Nombre de cycles",
-            default=3
+            int, 1
         )
+        if nb_cycles is None:
+            return None
         
         # 4. Monnaie de bouclage
-        use_loop_currency = Confirm.ask(
-            "Voulez-vous forcer une monnaie de bouclage pour tous les cycles ?",
-            default=False
+        console.print("\n[yellow]Monnaie de bouclage[/yellow]")
+        use_loop = self._get_confirmed_input(
+            "Voulez-vous forcer une monnaie de bouclage ? (o/n) : ",
+            lambda x: x.lower() in ['o', 'n'],
+            "Répondez 'o' ou 'n'"
         )
+        if use_loop is None:
+            return None
         
         loop_currency = None
-        if use_loop_currency:
-            loop_currency = Prompt.ask(
-                "Monnaie de bouclage",
-                choices=available_currencies,
-                default="EUR"
+        if use_loop.lower() == 'o':
+            loop_currency = self._get_confirmed_input(
+                f"Monnaie de bouclage (options: {'/'.join(available_currencies)}) : ",
+                lambda x: x.upper() in available_currencies,
+                f"Devise invalide. Choix : {', '.join(available_currencies)}"
             )
+            if loop_currency is None:
+                return None
+            loop_currency = loop_currency.upper()
         
-        # 5. Marchés à exclure (soft exclusion)
-        use_exclusion = Confirm.ask(
-            "Voulez-vous exclure certains marchés comme marché de VENTE ?",
-            default=False
+        # 5. Marchés exclus
+        console.print("\n[yellow]Exclusion de marchés[/yellow]")
+        use_exclusion = self._get_confirmed_input(
+            "Voulez-vous exclure certains marchés comme marché de VENTE ? (o/n) : ",
+            lambda x: x.lower() in ['o', 'n'],
+            "Répondez 'o' ou 'n'"
         )
+        if use_exclusion is None:
+            return None
         
         soft_excluded = []
-        if use_exclusion:
+        if use_exclusion.lower() == 'o':
             console.print(f"[yellow]Marchés disponibles :[/yellow] {', '.join(available_currencies)}")
             console.print("[dim]Les marchés exclus ne pourront pas être utilisés comme marché de vente[/dim]")
-            console.print("[dim]Mais peuvent être sourcing ou destination de bouclage[/dim]")
             
-            excluded_input = Prompt.ask(
-                "Marchés à exclure (séparés par des virgules)",
-                default=""
+            excluded_input = self._get_confirmed_input(
+                "Marchés à exclure (séparés par virgules) ou vide : ",
+                None  # Pas de validation, peut être vide
             )
-            if excluded_input:
+            if excluded_input is None:
+                return None
+            
+            if excluded_input.strip():
                 soft_excluded = [c.strip().upper() for c in excluded_input.split(',')]
-                # Valider que les marchés existent
                 soft_excluded = [c for c in soft_excluded if c in available_currencies]
                 
-                # Avertir si conflit avec bouclage
                 if loop_currency and loop_currency in soft_excluded:
                     console.print(f"[yellow]⚠️  {loop_currency} est exclu mais forcé comme bouclage → Priorité au bouclage[/yellow]")
         
@@ -221,11 +298,14 @@ class SimulationEngine:
 
         # Demander à l'utilisateur de choisir
         try:
-            choice_str = Prompt.ask(
-                f"Quelle route souhaitez-vous simuler ?",
-                choices=[str(i+1) for i in range(nb_routes_to_show)],
-                default="1"
+            choice_str = self._get_confirmed_input(
+                f"Quelle route souhaitez-vous simuler ? (1-{nb_routes_to_show}) : ",
+                lambda x: x.isdigit() and 1 <= int(x) <= nb_routes_to_show,
+                f"Entrez un nombre entre 1 et {nb_routes_to_show}"
             )
+            if choice_str is None:
+                return None
+            
             choice = int(choice_str)
             best_route = sorted_routes[choice - 1]
             
@@ -455,7 +535,10 @@ class SimulationEngine:
             
             # 2. Collecter paramètres
             params = self._get_user_inputs()
-            
+
+            if params is None:
+                console.print("[yellow]⚠️  Simulation annulée par l'utilisateur[/yellow]")
+                return False            
             # 3. Trouver route optimale
             best_route = self._find_optimal_route(
                 params['sourcing_currency'],

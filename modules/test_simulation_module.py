@@ -501,6 +501,102 @@ class TestSimulationEngine(unittest.TestCase):
         """Test: Capital négatif (cas invalide mais testé)"""
         usdt = self.engine._convert_to_usdt(-1000, 'EUR')
         self.assertLess(usdt, 0)
+    # ==================== TESTS SAISIE DONNÉES ====================
+
+    def test_get_numeric_input_valid(self):
+        """Test: Saisie numérique valide"""
+        with patch('builtins.input', return_value='1000'):
+            with patch('simulation_module.Confirm.ask', return_value=False):
+                result = self.engine._get_numeric_input("Montant", float, 0)
+                self.assertEqual(result, 1000.0)
+
+    def test_get_numeric_input_empty_string(self):
+        """Test: Chaîne vide refusée"""
+        with patch('builtins.input', side_effect=['', 'annuler']):
+            with patch('simulation_module.Confirm.ask', return_value=True):
+                result = self.engine._get_numeric_input("Montant", float, 0)
+                self.assertIsNone(result)
+
+    def test_get_numeric_input_only_spaces(self):
+        """Test: Espaces seulement refusés"""
+        with patch('builtins.input', side_effect=['   ', 'annuler']):
+            with patch('simulation_module.Confirm.ask', return_value=True):
+                result = self.engine._get_numeric_input("Montant", float, 0)
+                self.assertIsNone(result)
+
+    def test_get_numeric_input_nan(self):
+        """Test: NaN détecté et refusé"""
+        with patch('builtins.input', side_effect=['nan', 'annuler']):
+            with patch('simulation_module.Confirm.ask', return_value=True):
+                result = self.engine._get_numeric_input("Montant", float, 0)
+                self.assertIsNone(result)
+
+    def test_get_numeric_input_infinity(self):
+        """Test: Infinity détecté et refusé"""
+        with patch('builtins.input', side_effect=['inf', 'annuler']):
+            with patch('simulation_module.Confirm.ask', return_value=True):
+                result = self.engine._get_numeric_input("Montant", float, 0)
+                self.assertIsNone(result)
+
+    def test_get_numeric_input_negative_below_min(self):
+        """Test: Valeur sous le minimum refusée"""
+        with patch('builtins.input', side_effect=['-100', 'annuler']):
+            with patch('simulation_module.Confirm.ask', return_value=True):
+                result = self.engine._get_numeric_input("Montant", float, 0)
+                self.assertIsNone(result)
+
+    def test_get_numeric_input_above_max(self):
+        """Test: Valeur au-dessus du maximum refusée"""
+        with patch('builtins.input', side_effect=['2000000', 'annuler']):
+            with patch('simulation_module.Confirm.ask', return_value=True):
+                result = self.engine._get_numeric_input("Montant", float, 0)
+                self.assertIsNone(result)
+
+    def test_get_numeric_input_with_comma(self):
+        """Test: Virgule comme séparateur décimal acceptée"""
+        with patch('builtins.input', return_value='1000,50'):
+            with patch('simulation_module.Confirm.ask', return_value=False):
+                result = self.engine._get_numeric_input("Montant", float, 0)
+                self.assertEqual(result, 1000.5)
+
+    def test_get_numeric_input_cancel(self):
+        """Test: Annulation utilisateur"""
+        with patch('builtins.input', return_value='annuler'):
+            with patch('simulation_module.Confirm.ask', return_value=True):
+                result = self.engine._get_numeric_input("Montant", float, 0)
+                self.assertIsNone(result)
+
+    def test_get_numeric_input_keyboard_interrupt(self):
+        """Test: Ctrl+C interrompt proprement"""
+        with patch('builtins.input', side_effect=KeyboardInterrupt):
+            result = self.engine._get_numeric_input("Montant", float, 0)
+            self.assertIsNone(result)
+
+    def test_get_confirmed_input_valid(self):
+        """Test: Saisie confirmée valide"""
+        with patch('builtins.input', return_value='EUR'):
+            result = self.engine._get_confirmed_input("Devise", lambda x: x in ['EUR', 'XAF'])
+            self.assertEqual(result, 'EUR')
+
+    def test_get_confirmed_input_invalid_then_valid(self):
+        """Test: Saisie invalide puis valide"""
+        with patch('builtins.input', side_effect=['INVALID', 'EUR']):
+            result = self.engine._get_confirmed_input("Devise", lambda x: x in ['EUR', 'XAF'])
+            self.assertEqual(result, 'EUR')
+
+    def test_get_confirmed_input_cancel_confirmed(self):
+        """Test: Annulation confirmée"""
+        with patch('builtins.input', return_value='annuler'):
+            with patch('simulation_module.Confirm.ask', return_value=True):
+                result = self.engine._get_confirmed_input("Devise")
+                self.assertIsNone(result)
+
+    def test_get_confirmed_input_cancel_rejected(self):
+        """Test: Annulation rejetée puis saisie valide"""
+        with patch('builtins.input', side_effect=['annuler', 'EUR']):
+            with patch('simulation_module.Confirm.ask', return_value=False):
+                result = self.engine._get_confirmed_input("Devise", lambda x: x == 'EUR')
+                self.assertEqual(result, 'EUR')
     
     @patch('simulation_module.calculate_profit_route')
     def test_zero_cycles(self, mock_calc):
