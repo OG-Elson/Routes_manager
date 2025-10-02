@@ -189,7 +189,12 @@ if [ -f "./security_audit.sh" ]; then
     sed -i "s/EMAIL=\"\"/EMAIL=\"$EMAIL\"/" "$AUDIT_SCRIPT"
     
     # Configurer cron pour ElsonG
-
+    if command -v crontab &> /dev/null; then
+        (crontab -u $NEW_USER -l 2>/dev/null; echo "$CRON_LINE") | crontab -u $NEW_USER -
+        echo -e "${GREEN}✓${NC} Audit quotidien configuré (00:00)"
+    else
+        echo -e "${YELLOW}⚠${NC} Cron non disponible (proot) - Lancez manuellement: security_audit.sh"
+    fi
     
     echo -e "${GREEN}✓${NC} Audit quotidien configuré (00:00)"
 else
