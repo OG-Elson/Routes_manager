@@ -60,8 +60,8 @@ else
     passwd "$NEW_USER"
     
     # Ajouter sudo limité (pas de NOPASSWD)
-    echo "$NEW_USER ALL=(ALL:ALL) ALL" > /etc/sudoers.d/$NEW_USER
-    chmod 440 /etc/sudoers.d/$NEW_USER
+    #echo "$NEW_USER ALL=(ALL:ALL) ALL" > /etc/sudoers.d/$NEW_USER
+    #chmod 440 /etc/sudoers.d/$NEW_USER
     
     echo -e "${GREEN}✓${NC} Utilisateur $NEW_USER créé"
 fi
