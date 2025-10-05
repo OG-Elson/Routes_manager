@@ -1,186 +1,322 @@
-# 📊 P2P Arbitrage Analysis System
+markdown# Routes Manager - Système d'Arbitrage P2P Crypto
 
-> Un framework complet de simulation et d'analyse pour l'arbitrage P2P international
+Plateforme intelligente de gestion et d'optimisation de rotations d'arbitrage P2P avec support multi-devises et simulations avancées.
 
-[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-65%25%20coverage-yellow.svg)](tests/)
+## 📋 Table des matières
 
-## 🎯 Vue d'ensemble
-
-Système d'analyse quantitative pour identifier et simuler des opportunités d'arbitrage dans le trading P2P de cryptomonnaies. Développé pour optimiser les flux de trésorerie et minimiser les risques de change.
-
-### Problème résolu
-
-Le trading P2P international nécessite de jongler entre :
-- Multiples devises fiat (EUR, XAF, RWF, KES...)
-- Taux de change Forex volatils
-- Frais de transaction variables
-- Risques de contrepartie
-
-Ce système calcule automatiquement la rentabilité de routes complexes sur plusieurs cycles.
-
-## ✨ Fonctionnalités
-
-- 🔍 **Moteur d'arbitrage** : Calcul de 20+ routes multi-devises en <1s
-- 📝 **Suivi de transactions** : Logging structuré avec validation des inputs
-- 📊 **KPI Analytics** : Rapports automatiques avec ROI, marges, graphiques
-- 🔄 **Simulation** : Tests de scénarios avec 100+ paramètres
-- 🧪 **Suite de tests** : 80+ tests unitaires et d'intégration
-
-## 🚀 Quick Start
-
-\`\`\`bash
-# Installation
-pip install -r requirements.txt
-
-# Configuration
-cp config.example.json config.json
-# Éditer config.json avec vos marchés
-
-# Lancer l'assistant interactif
-python src/daily_briefing.py
-
-# Simuler une rotation
-python src/daily_briefing.py --simulation
-
-# Générer les KPIs
-python src/kpi_analyzer.py
-\`\`\`
-
-## 📐 Architecture
-
-\`\`\`
-┌─────────────────┐
-│ Daily Briefing  │ ◄── Point d'entrée utilisateur
-│  (Interface)    │
-└────────┬────────┘
-         │
-    ┌────▼───────────────────┐
-    │  Arbitrage Engine      │ ◄── Calculs financiers
-    │  (Logique métier)      │
-    └────────┬───────────────┘
-             │
-    ┌────────▼────────┐
-    │  Rotation       │ ◄── État de session
-    │  Manager        │
-    └─────────────────┘
-\`\`\`
-
-### Modules clés
-
-| Module | Responsabilité | LOC |
-|--------|---------------|-----|
-| `arbitrage_engine.py` | Calcul routes optimales | ~350 |
-| `daily_briefing.py` | Interface utilisateur | ~600 |
-| `kpi_analyzer.py` | Analyse de performance | ~400 |
-| `simulation_module.py` | Tests automatisés | ~500 |
-
-## 💡 Exemples d'utilisation
-
-### Calculer la meilleure route
-
-\`\`\`python
-from src.arbitrage_engine import find_best_routes
-
-routes = find_best_routes(top_n=5)
-best = routes[0]
-
-print(f"Route: {best['detailed_route']}")
-print(f"Marge: {best['profit_pct']:.2f}%")
-# Output: Route: EUR → USDT → XAF → EUR → USDT
-#         Marge: 5.23%
-\`\`\`
-
-### Simuler 1000 scénarios
-
-\`\`\`bash
-python tests/test_simulation.py
-# Génère 1000 rotations avec capitaux variés
-# Temps d'exécution: ~45s
-\`\`\`
-
-## 🧪 Tests
-
-\`\`\`bash
-# Tests unitaires
-python tests/test_unit.py
-
-# Tests avancés
-python tests/test_advanced.py
-
-# Tests d'intégration
-python tests/test_integration.py
-
-# Tous les tests
-pytest tests/ -v
-\`\`\`
-
-**Couverture actuelle** : 65% (objectif : 80%)
-
-## 📊 Exemple de résultats
-
-\`\`\`
-Capital initial: 1,000 EUR
-Route optimale: EUR → USDT → XAF → EUR (3 cycles)
-
-Résultats après 30 jours :
-├─ Capital final: 1,157 EUR
-├─ Profit net: +157 EUR
-├─ ROI: +15.7%
-└─ Nb transactions: 27
-\`\`\`
-
-## 🛠️ Stack technique
-
-- **Python 3.8+** : Langage principal
-- **Pandas** : Manipulation de données
-- **Rich** : Interface console
-- **Pytest** : Framework de tests
-
-## 📝 TODO / Roadmap
-
-- [ ] Scraping automatique des prix Binance P2P
-- [ ] Dashboard web (Flask + Chart.js)
-- [ ] Backtesting sur données historiques
-- [ ] API REST pour intégration externe
-
-## 🤝 Contribution
-
-Projet personnel à but pédagogique. Feedback bienvenu !
-
-## 📄 License
-
-License - Voir [LICENSE](LICENSE)
+- [Caractéristiques](#caractéristiques)
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Utilisation](#utilisation)
+- [Fonctionnalités avancées](#fonctionnalités-avancées)
+- [Modules](#modules)
+- [Tests](#tests)
+- [Sécurité](#sécurité)
 
 ---
 
-**Développé par OG_Elson** | [LinkedIn](#) | [Portfolio](#)
-\`\`\`
+## ✨ Caractéristiques
 
-### Ajouts obligatoires
+- **Calcul automatique des routes optimales** avec analyse de profitabilité
+- **Support double méthode de conversion** : Forex (bid/ask) ou Banque (spread additionnel)
+- **Filtres avancés** : devise de sourcing, exclusions, bouclage, méthode de conversion
+- **Mode simulation** : test de rotations sans risque réel
+- **Gestion de cycles** : bouclage automatique sur devise choisie
+- **Analyse KPI** : rapports détaillés de performance
+- **Validation robuste** : détection d'incohérences dans la configuration
+- **Interface CLI interactive** avec Rich
 
-1. **Captures d'écran** : Ajouter dans `docs/screenshots/`
-   - Dashboard Rich console
-   - Rapport KPI généré
-   - Interface simulation
+---
 
-2. **LICENSE** : Ajouter fichier MIT
+## 🏗️ Architecture
+Routes_manager/
+├── src/
+│   ├── engine/              # Moteur d'arbitrage
+│   │   ├── arbitrage_engine.py      # Calcul routes + validation
+│   │   └── rotation_manager.py      # Gestion état rotations
+│   ├── cli/                 # Interface utilisateur
+│   │   └── daily_briefing.py        # Assistant principal
+│   ├── modules/             # Modules complémentaires
+│   │   ├── simulation_module.py     # Simulateur rotations
+│   │   └── scenario_generator.py    # Générateur scénarios test
+│   ├── utils/               # Utilitaires
+│   │   └── route_params_collector.py # Collecte paramètres centralisée
+│   └── analysis/            # Analyse données
+│       └── kpi_analyzer.py          # Analyse performances
+├── tests/                   # Tests unitaires/intégration
+├── data/                    # Fichiers de données
+├── security/                # Scripts sécurité
+├── config.json              # Configuration principale
+└── README.md
 
-3. **.gitignore** :
-```gitignore
-# Configuration sensible
-config.json
-rotation_state.json
+---
 
-# Données opérationnelles
-data/transactions.csv
-data/debriefing.csv
+## 🚀 Installation
 
-# Environnement
-venv/
-__pycache__/
-*.pyc
+### Prérequis
+- Python 3.9+
+- pip
 
-# Rapports de test
-test_reports/
+### Étapes
+```bash
+# Cloner le dépôt
+git clone https://github.com/OG-Elson/Routes_manager.git
+cd Routes_manager
+
+# Installer les dépendances
+pip install -r requirement.txt
+
+# Configurer
+cp config.example.json config.json
+# Éditer config.json avec vos paramètres
+
+⚙️ Configuration
+Structure config.json
+json{
+  "markets": [
+    {
+      "currency": "EUR",
+      "buy_price": 0.857,
+      "sell_price": 0.851,
+      "fee_pct": 0.1,
+      "name": "Europe"
+    },
+    {
+      "currency": "XAF",
+      "buy_price": 595.86,
+      "sell_price": 593.65,
+      "fee_pct": 0.0,
+      "name": "Afrique Centrale"
+    }
+  ],
+  "forex_rates": {
+    "XAF/EUR": {
+      "bid": 650.0,
+      "ask": 660.0,
+      "bank_spread_pct": 1.5
+    }
+  },
+  "default_conversion_method": "forex",
+  "SEUIL_RENTABILITE_PCT": 1.5,
+  "NB_CYCLES_PAR_ROTATION": 3
+}
+Format forex_rates
+Nouveau format (recommandé) :
+json"XAF/EUR": {
+  "bid": 650.0,        // Taux si vous VENDEZ XAF contre EUR
+  "ask": 660.0,        // Taux si vous ACHETEZ XAF contre EUR
+  "bank_spread_pct": 1.5  // Spread bancaire additionnel
+}
+Ancien format (toujours supporté) :
+json"XAF/EUR": 655.957
+Méthodes de conversion
+FOREX (marché) :
+
+Utilise bid (vente) ou ask (achat) selon la direction
+Spreads réels du marché
+
+BANQUE :
+
+Calcule taux mid : (bid + ask) / 2
+Applique bank_spread_pct défavorable dans les deux sens
+XAF→EUR : mid × (1 - spread%)
+EUR→XAF : mid × (1 + spread%)
+
+
+💻 Utilisation
+Mode production (daily_briefing)
+bashpython src/cli/daily_briefing.py
+Fonctionnalités :
+
+Planification nouvelle rotation (avec collecte paramètres interactive)
+Log transactions (achat/vente/conversion/clôture)
+Configuration devise de bouclage
+Forçage transactions
+Génération rapports KPI
+
+Commandes :
+bash# Logger une transaction
+python src/cli/daily_briefing.py --log-achat
+python src/cli/daily_briefing.py --log-vente
+python src/cli/daily_briefing.py --log-conversion
+python src/cli/daily_briefing.py --log-cloture
+
+# Configurer devise de bouclage
+python src/cli/daily_briefing.py --set-loop-currency XAF
+
+# Forcer une transaction
+python src/cli/daily_briefing.py --force-transaction VENTE
+Mode simulation
+bashpython src/cli/daily_briefing.py --simulation
+Paramètres collectés interactivement :
+
+Devise de sourcing (EUR, XAF, XOF, RWF, KES)
+Capital initial
+Nombre de cycles
+Devise de bouclage (optionnel)
+Marchés exclus (optionnel)
+Méthode de conversion (forex / banque)
+
+Résultats générés :
+
+simulations/SIM_YYYYMMDD_HHMMSS/transactions.csv
+simulations/SIM_YYYYMMDD_HHMMSS/plan_de_vol.json
+simulations/SIM_YYYYMMDD_HHMMSS/simulation_config.json
+simulations/SIM_YYYYMMDD_HHMMSS/simulation_report.txt
+
+
+🎯 Fonctionnalités avancées
+Filtres de routes
+Le moteur d'arbitrage accepte des filtres pour affiner la recherche :
+pythonfrom src.engine.arbitrage_engine import find_routes_with_filters
+
+routes = find_routes_with_filters(
+    top_n=5,
+    apply_threshold=True,
+    sourcing_currency='EUR',           # Forcer devise de départ
+    excluded_markets=['RWF', 'KES'],   # Exclure comme marché de vente
+    loop_currency='XAF',               # Priorité sur exclusions
+    conversion_method='forex'          # 'forex' ou 'bank'
+)
+Bouclage de cycles
+Configuration d'une devise de bouclage pour réinvestir automatiquement :
+bashpython src/cli/daily_briefing.py --set-loop-currency XAF
+Lorsque vous mettez "Cloture du Cycle N" dans les notes d'une transaction, le système propose de créer un nouveau cycle qui :
+
+Commence par un ACHAT en XAF
+Se termine par une CONVERSION vers XAF
+
+Double cycle
+Pour certaines devises, le moteur teste automatiquement un "double cycle" :
+
+Vendre USDT en devise locale
+Racheter USDT avec le produit de la vente
+Continuer la rotation normale
+
+Avantage : Optimise le capital investi en EUR.
+
+📦 Modules
+arbitrage_engine.py
+Fonctions principales :
+
+find_routes_with_filters() : Recherche routes avec filtres avancés
+calculate_profit_route() : Calcul profitabilité d'une route
+get_forex_rate() : Conversion avec méthode forex/banque
+validate_config_coherence() : Validation configuration
+
+route_params_collector.py
+Centralisation collecte paramètres :
+
+collect_route_search_parameters() : Paramètres recherche routes
+collect_simulation_parameters() : Paramètres simulation complète
+
+Gestion d'erreurs robuste :
+
+Validation NaN/Infini
+Détection valeurs vides
+Option 'annuler' à tout moment
+Gestion KeyboardInterrupt
+
+rotation_manager.py
+Gestion état rotations :
+
+Sauvegarde atomique avec backup
+Validation JSON + récupération fichiers corrompus
+Historique transactions forcées (limite 100 entrées)
+Statistiques rotations
+
+kpi_analyzer.py
+Analyse performances :
+
+Calcul ROI, marges, profits
+Rapports détaillés par rotation
+Sauvegarde historique mensuel
+Détection incohérences données
+
+
+🧪 Tests
+bash# Lancer tous les tests
+python -m pytest tests/
+
+# Tests spécifiques
+python -m pytest tests/test_unit.py
+python -m pytest tests/test_integration.py
+python -m pytest tests/test_simulation.py
+python -m pytest tests/test_advanced.py
+Couverture :
+
+Tests unitaires (fonctions isolées)
+Tests d'intégration (modules combinés)
+Tests simulation (scénarios complets)
+Tests avancés (edge cases, erreurs)
+
+
+🔒 Sécurité
+Scripts disponibles
+bash# Audit sécurité
+bash security/security_audit.sh
+
+# Durcissement système
+bash security/security_harden.sh
+Bonnes pratiques
+
+Ne JAMAIS commiter config.json avec vraies données
+Utiliser config.example.json comme template
+Ajouter fichiers sensibles dans .gitignore
+Vérifier permissions fichiers (chmod 600 config.json)
+
+
+📊 Exemple de workflow complet
+bash# 1. Configuration initiale
+cp config.example.json config.json
+vim config.json  # Éditer avec vos marchés/taux
+
+# 2. Simulation test
+python src/cli/daily_briefing.py --simulation
+# Choisir : EUR, 1000€, 2 cycles, XAF bouclage, forex
+
+# 3. Vérifier résultats
+cat simulations/SIM_*/simulation_report.txt
+
+# 4. Planifier rotation réelle
+python src/cli/daily_briefing.py
+# Choisir route, méthode conversion
+
+# 5. Logger transactions
+python src/cli/daily_briefing.py --log-achat
+python src/cli/daily_briefing.py --log-vente
+python src/cli/daily_briefing.py --log-conversion
+
+# 6. Analyser performances
+python src/analysis/kpi_analyzer.py
+
+🤝 Contribution
+Les contributions sont les bienvenues. Veuillez :
+
+Fork le projet
+Créer une branche feature (git checkout -b feature/AmazingFeature)
+Commit vos changements (git commit -m 'Add AmazingFeature')
+Push vers la branche (git push origin feature/AmazingFeature)
+Ouvrir une Pull Request
+
+
+📝 License
+Ce projet est sous license MIT - voir le fichier LICENSE pour détails.
+
+📞 Support
+Pour toute question ou problème :
+
+Ouvrir une issue sur GitHub
+Consulter la documentation dans /docs (si disponible)
+
+
+🗓️ Roadmap
+
+ Interface web (Dashboard)
+ Support multi-utilisateurs
+ API REST
+ Alertes temps réel (Telegram/Email)
+ ML pour prédiction marges
+ Support plus de 10 devises
+ Mode backtest historique
