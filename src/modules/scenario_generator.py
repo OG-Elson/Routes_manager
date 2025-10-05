@@ -47,15 +47,16 @@ def calculate_transaction_amounts(capital_eur, expected_margin, nb_cycles=1):
         transactions.append({
             'type': 'CONVERSION',
             'market': 'XAF->EUR',  # Format pour create_transactions_csv
+            'amount_usdt': round(amount_usdt, 2),  # ← CORRECTION: Montant USDT du cycle
             'amount_sent': round(amount_xaf, 2),        # Montant envoyé
             'amount_received': round(current_capital_eur, 2),  # Montant reçu
-            'amount_usdt': round(amount_usdt, 2),  # ← CORRECTION: Montant USDT du cycle
             'amount_local': round(current_capital_eur, 2),  # Pour compatibilité
             'fee_pct': 0.001,
             'payment_method': 'Forex',
             'counterparty_id': 'CONVERTER_001',
             'notes': f'Conversion XAF→EUR cycle {cycle+1}'
         })
+
     
     # Appliquer la marge attendue au capital final
     final_capital = capital_eur * (1 + expected_margin)

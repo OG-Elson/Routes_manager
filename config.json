@@ -2,46 +2,63 @@
   "markets": [
     {
       "currency": "EUR",
-      "buy_price": 0.86,
-      "sell_price": 0.88,
+      "buy_price": 0.857,
+      "sell_price": 0.851,
       "fee_pct": 0.1,
       "name": "Europe"
     },
     {
       "currency": "XAF",
-      "buy_price": 605,
-      "sell_price": 620,
+      "buy_price": 595.86,
+      "sell_price": 593.65,
       "fee_pct": 0.0,
       "name": "Afrique Centrale"
     },
     {
       "currency": "XOF",
-      "buy_price": 605,
-      "sell_price": 620,
+      "buy_price": 566.60,
+      "sell_price": 569.50,
       "fee_pct": 0.0,
       "name": "Afrique Ouest"
     },
     {
       "currency": "RWF",
-      "buy_price": 1310,
-      "sell_price": 1350,
+      "buy_price": 1470.70,
+      "sell_price": 1466.22,
       "fee_pct": 1.0,
       "name": "Rwanda"
     },
     {
       "currency": "KES",
       "buy_price": 128,
-      "sell_price": 132,
+      "sell_price": 127.61,
       "fee_pct": 1.0,
       "name": "Kenya"
     }
   ],
   "forex_rates": {
-    "XAF/EUR": 655.957,
-    "XOF/EUR": 655.957,
-    "RWF/EUR": 1398.5,
-    "KES/EUR": 151.76
+    "XAF/EUR": {
+      "bid": 650.0,
+      "ask": 660.0,
+      "bank_spread_pct": 1.5
+    },
+    "XOF/EUR": {
+      "bid": 650.0,
+      "ask": 660.0,
+      "bank_spread_pct": 1.2
+    },
+    "RWF/EUR": {
+      "bid": 1690.0,
+      "ask": 1710.0,
+      "bank_spread_pct": 2.0
+    },
+    "KES/EUR": {
+      "bid": 150.5,
+      "ask": 153.0,
+      "bank_spread_pct": 1.8
+    }
   },
+  "default_conversion_method": "forex",
   "SEUIL_RENTABILITE_PCT": 1.5,
   "NB_CYCLES_PAR_ROTATION": 3
 }

@@ -1,4 +1,4 @@
-# modules/test_simulation_module.py
+# test/test_simulation.py
 
 import sys
 import os
@@ -23,7 +23,7 @@ if not os.path.exists(os.path.join(project_root, 'config.json')):
 os.chdir(project_root)
 sys.path.insert(0, project_root)
 
-from simulation_module import SimulationEngine
+from src.module.simulation_module import SimulationEngine
 
 
 class TestSimulationEngine(unittest.TestCase):

@@ -7,15 +7,16 @@ from datetime import datetime
 from pathlib import Path
 
 # Configuration chemin
-current_file = os.path.abspath(__file__)
+"""current_file = os.path.abspath(__file__)
 modules_dir = os.path.dirname(current_file)
 project_root = os.path.dirname(modules_dir)
 os.chdir(project_root)
-sys.path.insert(0, project_root)
+sys.path.insert(0, project_root)"""
 
-from arbitrage_engine_bis import calculate_profit_route, markets, forex_rates
-from daily_briefing_bis import robust_csv_append, generate_new_rotation_id
-from rotation_manager import RotationManager
+from src.utils.route_params_collector import collect_simulation_parameters
+from src.engine.arbitrage_engine import calculate_profit_route, markets, forex_rates
+from src.cli.daily_briefing import robust_csv_append, generate_new_rotation_id
+from src.engine.rotation_manager import RotationManager
 from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt, Confirm, IntPrompt, FloatPrompt
@@ -55,6 +56,7 @@ class SimulationEngine:
         def is_valid_number(v):
             try:
                 # Gestion valeur vide
+
                 if not v or v.strip() == '':
                     return False
                 num = input_type(v.replace(',', '.'))
@@ -94,8 +96,15 @@ class SimulationEngine:
 
     def _load_config(self):
         """Charge la configuration"""
-        with open('config.json', 'r') as f:
+        from pathlib import Path
+        
+        # Remonter 3 niveaux : simulation_module.py -> modules/ -> src/ -> projet/
+        project_root = Path(__file__).resolve().parent.parent.parent
+        config_path = project_root / 'config.json'
+        
+        with open(config_path, 'r', encoding='utf-8') as f:
             return json.load(f)
+        
     @staticmethod
     def _round_amounts(data):
         """Arrondit les montants pour l'écriture CSV"""
@@ -209,6 +218,10 @@ class SimulationEngine:
             'soft_excluded': soft_excluded,
             'initial_capital': initial_capital
         }
+    def _get_user_inputs(self):
+        """Collecte les paramètres de simulation via interface interactive"""
+        # ✅ UTILISER LA FONCTION CENTRALISÉE
+        return collect_simulation_parameters(self.config['markets'], self.config)
     
     def _convert_to_usdt(self, amount, currency):
         """Convertit un montant en USDT selon les prix du marché"""
@@ -237,55 +250,34 @@ class SimulationEngine:
                 return market['fee_pct']
         return 0
     
-    def _find_optimal_route(self, sourcing_currency, soft_excluded, loop_currency):
-        """Trouve la meilleure route en tenant compte des exclusions"""
+    def _find_optimal_route(self, sourcing_currency, soft_excluded, loop_currency,conversion_method):
+        """Trouve la meilleure route - SIMPLIFIÉ avec fonction centrale"""
         console.print("\n[yellow]🔍 Recherche de la route optimale...[/yellow]")
         
-        all_routes = []
+        # ✅ UTILISER LA FONCTION CENTRALE
+        from src.engine.arbitrage_engine import find_routes_with_filters
         
-        for market in self.config['markets']:
-            selling_currency = market['currency']
-            
-            # Skip si même monnaie
-            if selling_currency == sourcing_currency:
-                continue
-            
-            # RÈGLE CRITIQUE: Skip si marché de VENTE est exclu
-            # EXCEPTION: Sauf si c'est le bouclage forcé
-            if selling_currency in soft_excluded:
-                if loop_currency and selling_currency == loop_currency:
-                    console.print(f"[dim]  {selling_currency} exclu mais accepté car bouclage forcé[/dim]")
-                else:
-                    console.print(f"[dim]  {selling_currency} exclu comme marché de vente → Skip[/dim]")
-                    continue
-            
-            # Tester sans et avec double cycle
-            for use_dc in [False, True]:
-                route = calculate_profit_route(
-                    1000,  # Capital test standardisé
-                    sourcing_currency,
-                    selling_currency,
-                    use_dc
-                )
-                
-                if route:
-                    all_routes.append(route)
-    
+        all_routes = find_routes_with_filters(
+            top_n=100,  # Récupérer plus que nécessaire pour affichage
+            apply_threshold=True,
+            sourcing_currency=sourcing_currency,
+            excluded_markets=soft_excluded,
+            loop_currency=loop_currency,
+            conversion_method=conversion_method
+        )
+        
         if not all_routes:
             console.print("[red]❌ Aucune route valide trouvée avec ces contraintes[/red]")
             return None
-
-        # Trier par profitabilité
-        sorted_routes = sorted(all_routes, key=lambda x: x['profit_pct'], reverse=True)
-
-        # Afficher top 5 (ou moins si pas assez de routes)
-        nb_routes_to_show = min(5, len(sorted_routes))
+        
+        # Affichage top 5
+        nb_routes_to_show = min(5, len(all_routes))
         table = Table(title="Routes Optimales Disponibles", show_header=True)
         table.add_column("Choix", justify="center", style="cyan")
         table.add_column("Route", style="white")
         table.add_column("Marge %", justify="right")
 
-        for i, route in enumerate(sorted_routes[:nb_routes_to_show], 1):
+        for i, route in enumerate(all_routes[:nb_routes_to_show], 1):
             style = "bold green" if i == 1 else ""
             margin_style = "bold green" if route['profit_pct'] > 0 else "bold red"
             table.add_row(
@@ -296,25 +288,20 @@ class SimulationEngine:
 
         console.print(table)
 
-        # Demander à l'utilisateur de choisir
-        try:
-            choice_str = self._get_confirmed_input(
-                f"Quelle route souhaitez-vous simuler ? (1-{nb_routes_to_show}) : ",
-                lambda x: x.isdigit() and 1 <= int(x) <= nb_routes_to_show,
-                f"Entrez un nombre entre 1 et {nb_routes_to_show}"
-            )
-            if choice_str is None:
-                return None
-            
-            choice = int(choice_str)
-            best_route = sorted_routes[choice - 1]
-            
-            console.print(f"\n[green]✓[/green] Route sélectionnée : {best_route['detailed_route']}")
-            return best_route
-            
-        except (ValueError, IndexError):
-            console.print("[red]Choix invalide[/red]")
+        # Choix utilisateur
+        choice_str = self._get_confirmed_input(
+            f"Quelle route souhaitez-vous simuler ? (1-{nb_routes_to_show}) : ",
+            lambda x: x.isdigit() and 1 <= int(x) <= nb_routes_to_show,
+            f"Entrez un nombre entre 1 et {nb_routes_to_show}"
+        )
+        if choice_str is None:
             return None
+        
+        choice = int(choice_str)
+        best_route = all_routes[choice - 1]
+        
+        console.print(f"\n[green]✓[/green] Route sélectionnée : {best_route['detailed_route']}")
+        return best_route
     
     def _generate_simulated_transactions(self, params, best_route):
         """Génère les transactions simulées pour tous les cycles"""
@@ -543,7 +530,8 @@ class SimulationEngine:
             best_route = self._find_optimal_route(
                 params['sourcing_currency'],
                 params['soft_excluded'],
-                params['loop_currency']
+                params['loop_currency'],
+                params['conversion_method']
             )
             
             if not best_route:

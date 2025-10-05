@@ -10,33 +10,46 @@ import sys
 import json
 import logging
 import shutil
-from rotation_manager import RotationManager
+from pathlib import Path
+from src.engine.rotation_manager import RotationManager
+
+# --- CONFIGURATION CHEMINS ---
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+CONFIG_PATH = PROJECT_ROOT / 'config.json'
+TRANSACTIONS_FILE = str(PROJECT_ROOT / 'transactions.csv')
+DEBRIEFING_FILE = str(PROJECT_ROOT / 'debriefing.csv')
+PLAN_FILE_TPL = str(PROJECT_ROOT / 'rotation_plan_{}.json')
+
 # --- CONFIGURATION DU LOGGING ---
-logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
+logging.basicConfig(
+    filename=str(PROJECT_ROOT / 'app.log'), 
+    level=logging.INFO, 
+    format='%(asctime)s - %(levelname)s - %(message)s', 
+    encoding='utf-8'
+)
+
+console = Console()
 
 # --- CHARGEMENT DE LA CONFIGURATION ---
 try:
-    with open('config.json', 'r', encoding='utf-8') as f:
+    with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
         config = json.load(f)
     SEUIL_RENTABILITE_PCT = config.get('SEUIL_RENTABILITE_PCT', 1.5)
     NB_CYCLES_PAR_ROTATION = config.get('NB_CYCLES_PAR_ROTATION', 3)
     markets = config.get('markets', [])
 except (FileNotFoundError, KeyError) as e:
-    logging.error(f"Fichier config.json manquant ou invalide. DÃ©tail: {e}")
-    print(f"ERREUR: Fichier config.json manquant ou invalide. Consultez app.log.")
+    logging.error(f"Fichier config.json manquant ou invalide. Détail: {e}")
+    print(f"ERREUR: Fichier config.json manquant ou invalide.")
+    print(f"Chemin recherché: {CONFIG_PATH}")
+    print(f"Fichier existe? {CONFIG_PATH.exists()}")
     exit()
 
 # --- IMPORTATION DU MOTEUR ---
 try:
-    from arbitrage_engine_bis import find_best_routes
-except ImportError:
-    print("ERREUR: Le fichier 'arbitrage_engine_bis.py' est introuvable dans le mÃªme dossier.")
+    from src.engine.arbitrage_engine import find_best_routes
+except ImportError as e:
+    print(f"ERREUR: Impossible d'importer arbitrage_engine: {e}")
     exit()
-
-console = Console()
-TRANSACTIONS_FILE = 'transactions.csv'
-DEBRIEFING_FILE = 'debriefing.csv'
-PLAN_FILE_TPL = 'rotation_plan_{}.json'
 
 # --- FONCTIONS DE SAISIE SÃCURISÃE ---
 def get_confirmed_input(prompt, validation_func=None, error_msg="Saisie invalide."):
@@ -322,7 +335,7 @@ def log_transaction(rotation_id, state):
             
             console.print("[blue]Génération du rapport KPIs...[/blue]")
             try:
-                from update_kpis_v4_bis import analyze_transactions
+                from src.analysis.kpi_analyzer import analyze_transactions
                 analyze_transactions('transactions.csv', mode='compact')
             except Exception as e:
                 console.print(f"[yellow]Erreur génération KPIs: {e}[/yellow]")
@@ -392,7 +405,7 @@ def log_transaction(rotation_id, state):
         if notes is None: return console.print("[yellow]Opération annulée.[/yellow]")
 
         # CORRECTION CRITIQUE : Récupérer le montant USDT du cycle
-        usdt_in_cycle = 0
+
         
         if last_trans and last_trans.get('Amount_USDT'):
             usdt_in_cycle = float(last_trans['Amount_USDT'])
@@ -526,7 +539,7 @@ def plan_new_rotation(last_id):
     console.print("Analyse des opportunitÃ©s de marchÃ© en cours...")
     
     try:
-        best_routes = [r for r in find_best_routes() if r.get('profit_pct', 0) >= SEUIL_RENTABILITE_PCT]
+        best_routes = find_best_routes()
     except Exception as e:
         console.print(f"[bold red]Erreur lors de l'analyse des routes: {e}[/bold red]")
         logging.error(f"Erreur find_best_routes: {e}")
@@ -874,7 +887,7 @@ if __name__ == "__main__":
                     import importlib.util
                     spec = importlib.util.spec_from_file_location(
                         "simulation_module", 
-                        "modules/simulation_module.py"
+                        "src/modules/simulation_module.py"
                     )
                     simulation_module = importlib.util.module_from_spec(spec)
                     spec.loader.exec_module(simulation_module)
@@ -884,7 +897,7 @@ if __name__ == "__main__":
                     
                 except FileNotFoundError:
                     console.print("[bold red]❌ Fichier simulation_module.py introuvable dans modules/[/bold red]")
-                    console.print("[dim]Assurez-vous que modules/simulation_module.py existe[/dim]")
+                    console.print("[dim]Assurez-vous que src/modules/simulation_module.py existe[/dim]")
                 except Exception as e:
                     console.print(f"[bold red]❌ Erreur simulation: {e}[/bold red]")
                     logging.error(f"Erreur module simulation: {e}", exc_info=True)
