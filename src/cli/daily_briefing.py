@@ -12,7 +12,7 @@ import logging
 import shutil
 from pathlib import Path
 from src.engine.rotation_manager import RotationManager
-
+from src.utils.route_params_collector import collect_route_search_parameters
 # --- CONFIGURATION CHEMINS ---
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 CONFIG_PATH = PROJECT_ROOT / 'config.json'
@@ -536,10 +536,15 @@ def plan_new_rotation(last_id):
     Retourne toujours un tuple (new_rotation_id, plan) ou (None, None) en cas d'Ã©chec.
     """
     console.print("\n[yellow bold]-- ÃTAPE 1 : PLANIFICATION D'UNE NOUVELLE ROTATION --[/yellow bold]")
+    route_params = collect_route_search_parameters(markets, config)
+    if route_params is None:
+        console.print("[yellow]⚠️ Planification annulée par l'utilisateur[/yellow]")
+        return None, None
+    
     console.print("Analyse des opportunitÃ©s de marchÃ© en cours...")
     
     try:
-        best_routes = find_best_routes()
+        best_routes = find_best_routes(conversion_method=route_params['conversion_method'] )
     except Exception as e:
         console.print(f"[bold red]Erreur lors de l'analyse des routes: {e}[/bold red]")
         logging.error(f"Erreur find_best_routes: {e}")
