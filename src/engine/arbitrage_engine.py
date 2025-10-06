@@ -145,7 +145,7 @@ def get_market_data(currency_code, markets_list):
     for market in markets_list:
         if "currency" in market and market["currency"] == currency_code:
             return market
-    raise ValueError(f"Aucun marchÃ© trouvÃ© pour la devise '{currency_code}'.")
+    raise ValueError(f"Aucun marché trouvé pour la devise '{currency_code}'.")
 
 def safe_divide(numerator, denominator, default=0):
     """Division sÃ©curisÃ©e pour Ã©viter les divisions par zÃ©ro"""
@@ -190,6 +190,19 @@ def get_forex_rate(from_currency, to_currency, forex_rates, conversion_method='f
     # Support ancien format (nombre simple) - rétrocompatibilité
     if isinstance(rate_data, (int, float)):
         return (rate_data if is_inverse else 1.0 / rate_data)
+    
+    if isinstance(rate_data, dict):
+        # Nouveau format avec bid/ask
+        if 'bid' in rate_data and 'ask' in rate_data:
+            rate_value = rate_data.get('bid', 0) if from_currency != 'EUR' else rate_data.get('ask', 0)
+        else:
+            rate_value = 0
+    else:
+        # Ancien format (nombre direct)
+        rate_value = rate_data
+
+    if rate_value <= 0:
+        raise ValueError(f"Taux forex invalide: {rate_value}")
     
     # Nouveau format avec bid/ask/bank_spread_pct
     if conversion_method == 'bank':

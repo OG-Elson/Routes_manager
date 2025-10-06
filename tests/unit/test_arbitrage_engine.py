@@ -70,8 +70,9 @@ class TestCalculateProfitRoute:
         
         assert result is not None
         
-        # profit_pct = (profit_eur / cost_eur) * 100
-        expected_pct = (result['profit_eur'] / result['cost_eur']) * 100 if result['cost_eur'] > 0 else 0
+    # Calculer profit net en EUR
+        profit_eur = result['revenue_eur'] - result['cost_eur']
+        expected_pct = (profit_eur / result['cost_eur']) * 100 if result['cost_eur'] > 0 else 0
         assert abs(result['profit_pct'] - expected_pct) < 0.01
     
     def test_plan_de_vol_structure(self, mock_markets, mock_forex_rates):

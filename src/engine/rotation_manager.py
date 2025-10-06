@@ -103,6 +103,7 @@ class RotationManager:
         
         self.state['active_rotations'][rotation_id] = {
             "rotation_id": rotation_id,
+            'current_cycle': 1,
             "loop_currency": None,
             "cycles_completed": 0,
             "forced_transactions": [],
