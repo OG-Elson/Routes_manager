@@ -200,7 +200,7 @@ def validate_market_data(market):
     return True, "OK"
 
 # --- MOTEUR DE CALCUL PRINCIPAL (LOGIQUE CORRIGÃE + DÃTAILS COMPLETS) ---
-def calculate_profit_route(initial_usdt, sourcing_code, selling_code, use_dc=False,conversion_method='forex'):
+def calculate_profit_route(initial_usdt, sourcing_code, selling_code,conversion_method='forex'):
     """
         Args ajouté:
         conversion_method: 'forex' ou 'bank'
@@ -234,41 +234,23 @@ def calculate_profit_route(initial_usdt, sourcing_code, selling_code, use_dc=Fal
     # --- ÉTAPE 1 : COÛT D'ACQUISITION RÉEL EN EUR ---
     cost_in_eur = 0
     
-    if use_dc:
-        if sourcing_market['currency'] == 'EUR':
-            return None
-        
-        # Double cycle
-        fiat_from_sale = usdt_start * sourcing_market['sell_price']
-        cost_to_buy_one_usdt = sourcing_market['buy_price'] * (1.0 + sourcing_market['fee_pct'] / 100.0)
-        
-        if cost_to_buy_one_usdt <= 0:
-            return None
-            
-        usdt_for_main_cycle = fiat_from_sale / cost_to_buy_one_usdt
-        if usdt_for_main_cycle <= 0:
-            return None
-        
-        # Le coût en EUR est celui pour acquérir le capital initial
-        cost_in_eur = (usdt_start * eur_market['buy_price']) * (1.0 + eur_market['fee_pct'] / 100.0)
-        details["Phase 1 (Double Cycle)"] = f"DC sur {sourcing_code}: {usdt_start:.2f} USDT → {usdt_for_main_cycle:.2f} USDT"
-    else:
+
         # Achat direct
-        fee_multiplier = 1.0 + sourcing_market['fee_pct'] / 100.0
-        cost_local = usdt_start * sourcing_market['buy_price'] * fee_multiplier
+    fee_multiplier = 1.0 + sourcing_market['fee_pct'] / 100.0
+    cost_local = usdt_start * sourcing_market['buy_price'] * fee_multiplier
 
-        # CORRECTION CRITIQUE : Conversion vers EUR via le taux forex
+    # CORRECTION CRITIQUE : Conversion vers EUR via le taux forex
 
-        try:
-            rate_to_eur = get_forex_rate(sourcing_code, 'EUR', forex_rates,conversion_method)
-            cost_in_eur = cost_local * rate_to_eur
-            
-            if cost_in_eur <= 0:
-                return None
-        except ValueError:
+    try:
+        rate_to_eur = get_forex_rate(sourcing_code, 'EUR', forex_rates,conversion_method)
+        cost_in_eur = cost_local * rate_to_eur
+        
+        if cost_in_eur <= 0:
             return None
+    except ValueError:
+        return None
             
-        details["Phase 1 (Sourcing)"] = f"Achat {usdt_start:.2f} USDT en {sourcing_code} = {cost_in_eur:.2f} EUR"
+    details["Phase 1 (Sourcing)"] = f"Achat {usdt_start:.2f} USDT en {sourcing_code} = {cost_in_eur:.2f} EUR"
 
     # --- ÉTAPE 2 : VENTE EN selling_currency ---
 
@@ -311,7 +293,7 @@ def calculate_profit_route(initial_usdt, sourcing_code, selling_code, use_dc=Fal
     
     details["Phase 4 (Réinvest)"] = f"{revenue_in_eur:.2f} EUR → {final_usdt_amount:.2f} USDT"
 
-    route_str = f"{sourcing_code}{'(DC)' if use_dc else ''} → USDT → {selling_code} → EUR → USDT"
+    route_str = f"{sourcing_code}'(DC)' → USDT → {selling_code} → EUR → USDT"
     
     # --- PLAN DE VOL ---
     plan = {'phases': []}
@@ -332,7 +314,6 @@ def calculate_profit_route(initial_usdt, sourcing_code, selling_code, use_dc=Fal
     return {
         "sourcing_market_code": sourcing_code, 
         "selling_market_code": selling_code,
-        "use_double_cycle": use_dc, 
         "conversion_method": conversion_method,
         "detailed_route": route_str, 
         "profit_pct": profit_pct, 
@@ -419,21 +400,7 @@ def find_routes_with_filters(
                     logging.debug(f"Route {market_a['currency']}→{market_b['currency']} exclue")
                     continue
             
-            # Tester sans et avec double cycle
-            for use_dc in [False, True]:
-                try:
-                    res = calculate_profit_route(
-                        1000, 
-                        market_a['currency'], 
-                        market_b['currency'], 
-                        use_dc,
-                        conversion_method
-                    )
-                    if res and res.get('profit_pct') is not None:
-                        all_routes.append(res)
-                except Exception as e:
-                    logging.debug(f"Route non calculable {market_a['currency']}->{market_b['currency']} (DC:{use_dc}): {e}")
-                    continue
+
     
     if not all_routes:
         logging.warning("Aucune route valide trouvée")

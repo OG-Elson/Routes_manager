@@ -325,7 +325,6 @@ class SimulationEngine:
             # Cycles 2+: sourcing = monnaie de bouclage (réinvestissement)
             if cycle == 1:
                 sourcing = best_route['sourcing_market_code']
-                use_dc = best_route['use_double_cycle']
             else:
                 sourcing = params['loop_currency'] or 'EUR'
                 use_dc = False
@@ -333,7 +332,7 @@ class SimulationEngine:
             selling = best_route['selling_market_code']
             
             # Recalculer avec le capital actuel
-            route = calculate_profit_route(current_usdt, sourcing, selling, use_dc)
+            route = calculate_profit_route(current_usdt, sourcing, selling)
             
             if not route:
                 console.print(f"[red]⚠️  Impossible de calculer le cycle {cycle}[/red]")
