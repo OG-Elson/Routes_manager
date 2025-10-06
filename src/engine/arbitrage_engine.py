@@ -22,7 +22,67 @@ except (FileNotFoundError, KeyError) as e:
 def validate_config_coherence(markets, forex_rates):
     """Valide la cohérence des taux de change et prix de marché"""
     alerts = []
+    # ========== VALIDATION PRIX NÉGATIFS ==========
+    for market in markets:
+        currency = market.get('currency', 'INCONNU')
+        
+        # Vérifier buy_price
+        buy_price = market.get('buy_price', 0)
+        if buy_price < 0:
+            alerts.append({
+                'type': 'PRIX_NEGATIF',
+                'severity': 'ERROR',
+                'message': f"{currency}: Prix d'achat négatif ({buy_price:.4f}) - INVALIDE. Vérifiez config.json"
+            })
+        
+        # Vérifier sell_price
+        sell_price = market.get('sell_price', 0)
+        if sell_price < 0:
+            alerts.append({
+                'type': 'PRIX_NEGATIF',
+                'severity': 'ERROR',
+                'message': f"{currency}: Prix de vente négatif ({sell_price:.4f}) - INVALIDE. Vérifiez config.json"
+            })
+        
+        # Vérifier fee_pct
+        fee_pct = market.get('fee_pct', 0)
+        if fee_pct < 0:
+            alerts.append({
+                'type': 'FRAIS_NEGATIFS',
+                'severity': 'ERROR',
+                'message': f"{currency}: Frais négatifs ({fee_pct:.2f}%) - INVALIDE. Vérifiez config.json"
+            })
     
+    # ========== VALIDATION TAUX FOREX NÉGATIFS ==========
+    for pair, rate_data in forex_rates.items():
+        # Support ancien format (nombre simple)
+        if isinstance(rate_data, (int, float)):
+            if rate_data < 0:
+                alerts.append({
+                    'type': 'TAUX_NEGATIF',
+                    'severity': 'ERROR',
+                    'message': f"{pair}: Taux de change négatif ({rate_data:.4f}) - INVALIDE. Vérifiez config.json"
+                })
+        # Nouveau format (bid/ask/bank_spread_pct)
+        elif isinstance(rate_data, dict):
+            if rate_data.get('bid', 0) < 0:
+                alerts.append({
+                    'type': 'TAUX_NEGATIF',
+                    'severity': 'ERROR',
+                    'message': f"{pair}: Taux bid négatif ({rate_data['bid']:.4f}) - INVALIDE. Vérifiez config.json"
+                })
+            if rate_data.get('ask', 0) < 0:
+                alerts.append({
+                    'type': 'TAUX_NEGATIF',
+                    'severity': 'ERROR',
+                    'message': f"{pair}: Taux ask négatif ({rate_data['ask']:.4f}) - INVALIDE. Vérifiez config.json"
+                })
+            if rate_data.get('bank_spread_pct', 0) < 0:
+                alerts.append({
+                    'type': 'SPREAD_NEGATIF',
+                    'severity': 'ERROR',
+                    'message': f"{pair}: Spread bancaire négatif ({rate_data['bank_spread_pct']:.2f}%) - INVALIDE"
+                })
     # Détecter le pivot (devise la plus présente dans forex_rates)
     pivot_counts = {}
     for pair in forex_rates.keys():
@@ -51,17 +111,26 @@ def validate_config_coherence(markets, forex_rates):
                 'message': f"{currency} non relié au pivot {pivot}"
             })
     
-    # Vérifier les spreads buy/sell
+    # Vérifier les écarts buy/sell
     for market in markets:
         if market.get('buy_price', 0) > 0 and market.get('sell_price', 0) > 0:
             spread_pct = ((market['buy_price'] - market['sell_price']) / market['sell_price']) * 100
             
-            if spread_pct < -2:
+            # Spread inversé EXTRÊME (> 10%) = Erreur manifeste
+            if spread_pct < -10:
                 alerts.append({
                     'type': 'SPREAD_INVERSE',
                     'severity': 'ERROR',
-                    'message': f"{market['currency']}: Prix achat < Prix vente - INVERSION!"
+                    'message': f"{market['currency']}: Spread inversé extrême ({spread_pct:.2f}%) - Vérifiez buy_price/sell_price dans config.json"
                 })
+            # Spread inversé léger (anomalie possible = opportunité)
+            elif spread_pct < -0.5:
+                alerts.append({
+                    'type': 'ANOMALIE_SPREAD',
+                    'severity': 'WARNING',
+                    'message': f"{market['currency']}: Spread inversé ({spread_pct:.2f}%) - Opportunité d'arbitrage détectée"
+                })
+            # Spread normal mais élevé
             elif spread_pct > 15:
                 alerts.append({
                     'type': 'SPREAD_ANORMAL',

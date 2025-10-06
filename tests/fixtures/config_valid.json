@@ -1,0 +1,40 @@
+{
+  "markets": [
+    {
+      "currency": "EUR",
+      "buy_price": 0.857,
+      "sell_price": 0.851,
+      "fee_pct": 0.1,
+      "name": "Europe"
+    },
+    {
+      "currency": "XAF",
+      "buy_price": 595.86,
+      "sell_price": 593.65,
+      "fee_pct": 0.0,
+      "name": "Afrique Centrale"
+    },
+    {
+      "currency": "XOF",
+      "buy_price": 566.60,
+      "sell_price": 569.50,
+      "fee_pct": 0.0,
+      "name": "Afrique Ouest"
+    }
+  ],
+  "forex_rates": {
+    "XAF/EUR": {
+      "bid": 650.0,
+      "ask": 660.0,
+      "bank_spread_pct": 1.5
+    },
+    "XOF/EUR": {
+      "bid": 650.0,
+      "ask": 660.0,
+      "bank_spread_pct": 1.2
+    }
+  },
+  "default_conversion_method": "forex",
+  "SEUIL_RENTABILITE_PCT": 1.5,
+  "NB_CYCLES_PAR_ROTATION": 3
+}

@@ -1,0 +1,19 @@
+{
+  "markets": [
+    {
+      "currency": "EUR",
+      "buy_price": 0.70,     
+      "sell_price": 0.857,
+      "fee_pct": 0.1,
+      "name": "Europe - SPREAD INVERSÉ"
+    }
+  ],
+  "forex_rates": {
+    "XAF/EUR": {
+      "bid": 650.0,
+      "ask": 660.0,
+      "bank_spread_pct": 1.5
+    }
+  },
+  "SEUIL_RENTABILITE_PCT": 1.5
+}

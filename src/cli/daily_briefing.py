@@ -533,7 +533,7 @@ def log_transaction(rotation_id, state):
 def plan_new_rotation(last_id):
     """
     Planifie une nouvelle rotation.
-    Retourne toujours un tuple (new_rotation_id, plan) ou (None, None) en cas d'Ã©chec.
+    Retourne toujours un tuple (new_rotation_id, plan) ou (None, None) en cas d'échec.
     """
     console.print("\n[yellow bold]-- ÃTAPE 1 : PLANIFICATION D'UNE NOUVELLE ROTATION --[/yellow bold]")
     route_params = collect_route_search_parameters(markets, config)
@@ -626,14 +626,14 @@ def handle_log_command(args):
                 return
             
             # ClÃ´ture forcÃ©e
-            motif = get_confirmed_input("Motif de la clÃ´ture prÃ©maturÃ©e : ")
+            motif = get_confirmed_input("Motif de la cloture prématurée : ")
             if motif is None: return
             
             state['forced_closure'] = True
             state['closure_reason'] = motif.strip()
             
         else:
-            console.print(Panel(f"[bold red]ERREUR DE SÃQUENCE[/bold red]\n"
+            console.print(Panel(f"[bold red]ERREUR DE SEQUENCE[/bold red]\n"
                                f"Vous essayez de logger un(e) '{command_type}', mais le plan prÃ©voit un(e) '{expected_type}'.\n"
                                f"Utilisez --log-cloture pour forcer une clÃ´ture prÃ©maturÃ©e.",
                                title="Commande Incorrecte"))
