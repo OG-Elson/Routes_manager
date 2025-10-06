@@ -44,93 +44,91 @@ class RotationManager:
             return {"active_rotations": {}}
     
     def load_state(self):
-        """✅ CORRECTION : Validation du JSON"""
-        if os.path.exists(ROTATION_STATE_FILE):
-            try:
-                with open(ROTATION_STATE_FILE, 'r', encoding='utf-8') as f:
-                    content = f.read().strip()
-                    
-                    if not content:
-                        logging.warning("rotation_state.json vide, création d'un nouvel état")
-                        return {"active_rotations": {}}
-                    
-                    state = json.loads(content)
-                    
-                    if not isinstance(state, dict):
-                        logging.error("rotation_state.json mal formé (pas un dict)")
-                        return {"active_rotations": {}}
-                    
-                    if 'active_rotations' not in state:
-                        logging.warning("Clé 'active_rotations' manquante, ajout")
-                        state['active_rotations'] = {}
-                    
-                    return state  # ← Return du state valide
-                    
-            except json.JSONDecodeError as e:
-                logging.error(f"JSON corrompu dans {ROTATION_STATE_FILE}: {e}")
-                backup_name = f"{ROTATION_STATE_FILE}.backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            """✅ CORRECTION : Validation du JSON + Tentative de restauration du backup"""
+            if os.path.exists(ROTATION_STATE_FILE):
                 try:
-                    os.rename(ROTATION_STATE_FILE, backup_name)
-                    logging.info(f"Fichier corrompu sauvegardé sous {backup_name}")
-                except:
-                    pass
-                
-                new_state = {"active_rotations": {}}
-                try:
-                    with open(ROTATION_STATE_FILE, 'w', encoding='utf-8') as f:
-                        json.dump(new_state, f, indent=2, ensure_ascii=False)
-                    logging.info(f"Nouveau {ROTATION_STATE_FILE} créé")
-                except Exception as write_error:
-                    logging.error(f"Échec création nouveau fichier: {write_error}")
-                
-                return new_state
+                    with open(ROTATION_STATE_FILE, 'r', encoding='utf-8') as f:
+                        content = f.read().strip()
+                        
+                        if not content:
+                            logging.warning("rotation_state.json vide, création d'un nouvel état")
+                            return {"active_rotations": {}}
+                        
+                        state = json.loads(content)
+                        
+                        if not isinstance(state, dict):
+                            logging.error("rotation_state.json mal formé (pas un dict)")
+                            return {"active_rotations": {}}
+                        
+                        if 'active_rotations' not in state:
+                            logging.warning("Clé 'active_rotations' manquante, ajout")
+                            state['active_rotations'] = {}
+                        
+                        return state  # ← Return du state valide
+                        
+                except json.JSONDecodeError as e:
+                    logging.error(f"JSON corrompu dans {ROTATION_STATE_FILE}: {e}. Tentative de restauration...")
+                    
+                    # 1. Sauvegarde du fichier corrompu (nom horodaté)
+                    corrupted_name = f"{ROTATION_STATE_FILE}.corrupted_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+                    try:
+                        os.rename(ROTATION_STATE_FILE, corrupted_name)
+                        logging.info(f"Fichier corrompu sauvegardé sous {corrupted_name}")
+                    except Exception as rename_error:
+                        logging.error(f"Échec du renommage du fichier corrompu: {rename_error}")
+                    
+                    # 2. Tenter de charger à partir du backup
+                    restored_state = self._load_from_backup() 
+                    
+                    # 3. Si le backup est invalide ou n'existe pas, créer un nouvel état vierge
+                    if not restored_state.get('active_rotations'):
+                        new_state = {"active_rotations": {}}
+                        try:
+                            with open(ROTATION_STATE_FILE, 'w', encoding='utf-8') as f:
+                                json.dump(new_state, f, indent=2, ensure_ascii=False)
+                            logging.info(f"Nouveau {ROTATION_STATE_FILE} créé suite échec restauration.")
+                        except Exception as write_error:
+                            logging.error(f"Échec création nouveau fichier: {write_error}")
+                        return new_state
+                    
+                    return restored_state # Retourne l'état restauré
+
+                except Exception as e:
+                    logging.error(f"Erreur lecture {ROTATION_STATE_FILE}: {e}")
+                    return {"active_rotations": {}}
             
-            except Exception as e:
-                logging.error(f"Erreur lecture {ROTATION_STATE_FILE}: {e}")
-                return {"active_rotations": {}}
-        
-        # ← Si fichier n'existe PAS (en dehors du if)
-        return {"active_rotations": {}}
+            # ← Si fichier n'existe PAS (en dehors du if)
+            return {"active_rotations": {}}
     
     def save_state(self):
-        """✅ AMÉLIORATION : Sauvegarde atomique avec backup"""
-        temp_file = f"{ROTATION_STATE_FILE}.tmp"
-        backup_file = f"{ROTATION_STATE_FILE}.backup"
-        
-        try:
-            # Écrire dans un fichier temporaire
-            with open(temp_file, 'w', encoding='utf-8') as f:
-                json.dump(self.state, f, indent=2, ensure_ascii=False)
+            """✅ AMÉLIORATION : Sauvegarde atomique (utilisant os.replace pour compatibilité Windows/Pytest)"""
+            temp_file = f"{ROTATION_STATE_FILE}.tmp"
             
-            # Backup de l'ancien fichier si il existe
-            if os.path.exists(ROTATION_STATE_FILE):
-                if os.path.exists(backup_file):
-                    os.remove(backup_file)
-                os.rename(ROTATION_STATE_FILE, backup_file)
-            
-            # Renommer le fichier temporaire
-            os.rename(temp_file, ROTATION_STATE_FILE)
-            
-            # Nettoyer le backup après succès
-            if os.path.exists(backup_file):
-                os.remove(backup_file)
-            
-            return True
-            
-        except Exception as e:
-            logging.error(f"Erreur sauvegarde état: {e}")
-            
-            # Restaurer le backup en cas d'échec
-            if os.path.exists(backup_file):
+            try:
+                # 1. Écrire dans un fichier temporaire
+                with open(temp_file, 'w', encoding='utf-8') as f:
+                    json.dump(self.state, f, indent=2, ensure_ascii=False)
+                
+                # 2. Copier l'ancienne version valide vers le backup permanent (.json -> .bak)
+                # Le .bak sera la dernière version valide connue.
                 if os.path.exists(ROTATION_STATE_FILE):
-                    os.remove(ROTATION_STATE_FILE)
-                os.rename(backup_file, ROTATION_STATE_FILE)
-            
-            # Nettoyer le fichier temporaire
-            if os.path.exists(temp_file):
-                os.remove(temp_file)
-            
-            return False
+                    # Utilisation de copy2 pour préserver les métadonnées (plus robuste)
+                    shutil.copy2(ROTATION_STATE_FILE, BACKUP_FILE)
+                
+                # 3. Remplacer atomiquement l'ancien fichier par le nouveau
+                # os.replace est plus fiable que os.rename pour l'écrasement sur Windows.
+                os.replace(temp_file, ROTATION_STATE_FILE)
+                
+                return True
+                
+            except Exception as e:
+                logging.error(f"Erreur sauvegarde état: {e}")
+                
+                # Nettoyer le fichier temporaire en cas d'échec
+                if os.path.exists(temp_file):
+                    os.remove(temp_file)
+                
+                return False
     
     def init_rotation(self, rotation_id):
         """✅ AJOUT : Validation de l'ID de rotation"""
