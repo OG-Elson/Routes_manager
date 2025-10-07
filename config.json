@@ -40,12 +40,12 @@
     "XAF/EUR": {
       "bid": 650.0,
       "ask": 660.0,
-      "bank_spread_pct": 1.5
+      "bank_spread_pct": 0.5
     },
     "XOF/EUR": {
       "bid": 650.0,
       "ask": 660.0,
-      "bank_spread_pct": 1.2
+      "bank_spread_pct": 0.5
     },
     "RWF/EUR": {
       "bid": 1690.0,

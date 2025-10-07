@@ -11,71 +11,11 @@ from unittest.mock import MagicMock
 
 @pytest.fixture
 def mock_config_valid():
-    """Configuration complète valide avec format bid/ask"""
-    return {
-        "markets": [
-            {
-                "currency": "EUR",
-                "buy_price": 0.857,
-                "sell_price": 0.851,
-                "fee_pct": 0.1,
-                "name": "Europe"
-            },
-            {
-                "currency": "XAF",
-                "buy_price": 595.86,
-                "sell_price": 593.65,
-                "fee_pct": 0.0,
-                "name": "Afrique Centrale"
-            },
-            {
-                "currency": "XOF",
-                "buy_price": 566.60,
-                "sell_price": 569.50,
-                "fee_pct": 0.0,
-                "name": "Afrique Ouest"
-            },
-            {
-                "currency": "RWF",
-                "buy_price": 1470.70,
-                "sell_price": 1466.22,
-                "fee_pct": 1.0,
-                "name": "Rwanda"
-            },
-            {
-                "currency": "KES",
-                "buy_price": 128.0,
-                "sell_price": 127.61,
-                "fee_pct": 1.0,
-                "name": "Kenya"
-            }
-        ],
-        "forex_rates": {
-            "XAF/EUR": {
-                "bid": 650.0,
-                "ask": 660.0,
-                "bank_spread_pct": 1.5
-            },
-            "XOF/EUR": {
-                "bid": 650.0,
-                "ask": 660.0,
-                "bank_spread_pct": 1.2
-            },
-            "RWF/EUR": {
-                "bid": 1690.0,
-                "ask": 1710.0,
-                "bank_spread_pct": 2.0
-            },
-            "KES/EUR": {
-                "bid": 150.5,
-                "ask": 153.0,
-                "bank_spread_pct": 1.8
-            }
-        },
-        "default_conversion_method": "forex",
-        "SEUIL_RENTABILITE_PCT": 1.5,
-        "NB_CYCLES_PAR_ROTATION": 3
-    }
+    """Charge config_valid.json - VRAIE source de vérité"""
+    json_path = Path(__file__).parent / "fixtures" / "config_valid.json"
+    with open(json_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
 
 
 @pytest.fixture
@@ -97,22 +37,10 @@ def mock_config_old_format():
 
 @pytest.fixture
 def mock_config_invalid_spread():
-    """Configuration avec spread inversé (buy < sell) - erreur"""
-    return {
-        "markets": [
-            {
-                "currency": "EUR",
-                "buy_price": 0.851,  # INVERSÉ
-                "sell_price": 0.857,
-                "fee_pct": 0.1,
-                "name": "Europe"
-            }
-        ],
-        "forex_rates": {
-            "XAF/EUR": {"bid": 650.0, "ask": 660.0, "bank_spread_pct": 1.5}
-        },
-        "SEUIL_RENTABILITE_PCT": 1.5
-    }
+    """Charge config_valid.json - VRAIE source de vérité"""
+    json_path = Path(__file__).parent / "fixtures" / "config_invalid_spread.json"
+    with open(json_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 
 @pytest.fixture

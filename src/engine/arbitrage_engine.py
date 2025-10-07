@@ -32,6 +32,7 @@ def validate_config_coherence(markets, forex_rates):
             alerts.append({
                 'type': 'PRIX_NEGATIF',
                 'severity': 'ERROR',
+                'currency': currency,
                 'message': f"{currency}: Prix d'achat négatif ({buy_price:.4f}) - INVALIDE. Vérifiez config.json"
             })
         
@@ -41,8 +42,10 @@ def validate_config_coherence(markets, forex_rates):
             alerts.append({
                 'type': 'PRIX_NEGATIF',
                 'severity': 'ERROR',
-                'message': f"{currency}: Prix de vente négatif ({sell_price:.4f}) - INVALIDE. Vérifiez config.json"
+                'message': f"{currency}: Prix de vente négatif ({sell_price:.4f}) - INVALIDE. Vérifiez config.json",
+                'severity': 'ERROR',
             })
+
         
         # Vérifier fee_pct
         fee_pct = market.get('fee_pct', 0)
@@ -50,6 +53,7 @@ def validate_config_coherence(markets, forex_rates):
             alerts.append({
                 'type': 'FRAIS_NEGATIFS',
                 'severity': 'ERROR',
+                'currency': currency,
                 'message': f"{currency}: Frais négatifs ({fee_pct:.2f}%) - INVALIDE. Vérifiez config.json"
             })
     
@@ -61,6 +65,7 @@ def validate_config_coherence(markets, forex_rates):
                 alerts.append({
                     'type': 'TAUX_NEGATIF',
                     'severity': 'ERROR',
+                    'currency': currency,
                     'message': f"{pair}: Taux de change négatif ({rate_data:.4f}) - INVALIDE. Vérifiez config.json"
                 })
         # Nouveau format (bid/ask/bank_spread_pct)
@@ -69,18 +74,21 @@ def validate_config_coherence(markets, forex_rates):
                 alerts.append({
                     'type': 'TAUX_NEGATIF',
                     'severity': 'ERROR',
+                    'currency': currency,
                     'message': f"{pair}: Taux bid négatif ({rate_data['bid']:.4f}) - INVALIDE. Vérifiez config.json"
                 })
             if rate_data.get('ask', 0) < 0:
                 alerts.append({
                     'type': 'TAUX_NEGATIF',
                     'severity': 'ERROR',
+                    'currency': currency,
                     'message': f"{pair}: Taux ask négatif ({rate_data['ask']:.4f}) - INVALIDE. Vérifiez config.json"
                 })
             if rate_data.get('bank_spread_pct', 0) < 0:
                 alerts.append({
                     'type': 'SPREAD_NEGATIF',
                     'severity': 'ERROR',
+                    'currency': currency,
                     'message': f"{pair}: Spread bancaire négatif ({rate_data['bank_spread_pct']:.2f}%) - INVALIDE"
                 })
     # Détecter le pivot (devise la plus présente dans forex_rates)
@@ -115,7 +123,7 @@ def validate_config_coherence(markets, forex_rates):
     for market in markets:
         if market.get('buy_price', 0) > 0 and market.get('sell_price', 0) > 0:
             spread_pct = ((market['buy_price'] - market['sell_price']) / market['sell_price']) * 100
-            
+            print(spread_pct)
             # Spread inversé EXTRÊME (> 10%) = Erreur manifeste
             if spread_pct < -10:
                 alerts.append({
@@ -141,21 +149,21 @@ def validate_config_coherence(markets, forex_rates):
     return alerts
 
 def get_market_data(currency_code, markets_list):
-    """RÃ©cupÃ¨re les donnÃ©es de marchÃ© pour une devise donnÃ©e"""
+    """Récupere les données de marché pour une devise donnée"""
     for market in markets_list:
         if "currency" in market and market["currency"] == currency_code:
             return market
     raise ValueError(f"Aucun marché trouvé pour la devise '{currency_code}'.")
 
 def safe_divide(numerator, denominator, default=0):
-    """Division sÃ©curisÃ©e pour Ã©viter les divisions par zÃ©ro"""
+    """Division sécurisée pour Eviter les divisions par zéro"""
     if denominator == 0 or denominator is None:
-        logging.warning(f"Division par zÃ©ro Ã©vitÃ©e: {numerator}/{denominator}")
+        logging.warning(f"Division par zéro évitée: {numerator}/{denominator}")
         return default
     try:
         result = numerator / denominator
         if not isinstance(result, (int, float)) or result != result:  # Check for NaN
-            logging.warning(f"RÃ©sultat de division invalide: {numerator}/{denominator} = {result}")
+            logging.warning(f"Résultat de division invalide: {numerator}/{denominator} = {result}")
             return default
         return result
     except (ZeroDivisionError, TypeError, ValueError):
@@ -165,69 +173,92 @@ def safe_divide(numerator, denominator, default=0):
 def get_forex_rate(from_currency, to_currency, forex_rates, conversion_method='forex'):
     """
     Récupère le taux de change avec méthode de conversion
-    
-    Args:
-        conversion_method: 'forex' (bid/ask) ou 'bank' (mid + spread)
+    Convention: EUR/XAF = {bid: prix achat EUR par banque, ask: prix vente EUR par banque}
     """
     if from_currency == to_currency:
         return 1.0
     
-    # Chercher FROM/TO
     pair = f"{from_currency}/{to_currency}"
     inverse_pair = f"{to_currency}/{from_currency}"
-    
+    found_pair = None
     rate_data = None
-    is_inverse = False
+
     
     if pair in forex_rates:
         rate_data = forex_rates[pair]
+        found_pair = pair
     elif inverse_pair in forex_rates:
         rate_data = forex_rates[inverse_pair]
-        is_inverse = True
+        found_pair = inverse_pair
     else:
         raise ValueError(f"Taux de change manquant pour {from_currency}→{to_currency}")
     
-    # Support ancien format (nombre simple) - rétrocompatibilité
+    # ========== ANCIEN FORMAT ==========
     if isinstance(rate_data, (int, float)):
-        return (rate_data if is_inverse else 1.0 / rate_data)
-    
-    if isinstance(rate_data, dict):
-        # Nouveau format avec bid/ask
-        if 'bid' in rate_data and 'ask' in rate_data:
-            rate_value = rate_data.get('bid', 0) if from_currency != 'EUR' else rate_data.get('ask', 0)
-        else:
-            rate_value = 0
-    else:
-        # Ancien format (nombre direct)
-        rate_value = rate_data
+        if rate_data <= 0:
+            raise ValueError(f"Taux forex invalide: {rate_data}")
 
-    if rate_value <= 0:
-        raise ValueError(f"Taux forex invalide: {rate_value}")
+        # Déterminer si on doit inverser
+        if found_pair == pair:
+            # Paire directe trouvée
+            return rate_data
+        else:
+            # Paire inverse trouvée
+            return 1.0 / rate_data
     
-    # Nouveau format avec bid/ask/bank_spread_pct
+    # ========== NOUVEAU FORMAT ==========
+    if not isinstance(rate_data, dict):
+        raise ValueError(f"Format de taux invalide: {type(rate_data)}")
+    
+    bid = rate_data.get('bid', 0)
+    ask = rate_data.get('ask', 0)
+    
+    if bid <= 0 or ask <= 0:
+        raise ValueError(f"Taux bid/ask invalides: bid={bid}, ask={ask}")
+    
+    # Décomposer la paire trouvée
+    base, quote = found_pair.split('/')
+    # --- MÉTHODE BANQUE ---
     if conversion_method == 'bank':
-        # Calcul mid
-        mid_rate = (rate_data['bid'] + rate_data['ask']) / 2
+        mid_rate = (bid + ask) / 2
         spread = rate_data.get('bank_spread_pct', 0) / 100.0
         
-        # Spread défavorable dans les deux sens (Option A)
-        if is_inverse:
-            # EUR→XAF : vous achetez XAF, la banque vous donne moins
-            effective_rate = mid_rate * (1 + spread)
+        if from_currency == base and to_currency == quote:
+            # On veut base→quote, on a base/quote
+            # Ex: XAF→EUR avec XAF/EUR bid=650
+            # 650 XAF = 1 EUR, donc 1 XAF = 1/650 EUR
+            # Spread défavorable : on reçoit moins
+            return (1 / mid_rate) * (1 - spread)
+
+
+        elif from_currency == quote and to_currency == base:
+            # On veut quote→base, on a base/quote
+            # Ex: EUR→XAF avec XAF/EUR bid=650
+            # On vend EUR, on reçoit 650 XAF (moins le spread)
+            return mid_rate * (1 - spread)
+        
         else:
-            # XAF→EUR : vous vendez XAF, la banque vous achète moins cher
-            effective_rate = (1 / mid_rate) * (1 - spread)
+            raise ValueError(f"Incohérence: paire {found_pair}, conversion {from_currency}→{to_currency}")
     
-    else:  # 'forex'
-        # Utiliser bid/ask selon la direction
-        if is_inverse:
-            # EUR→XAF : vous achetez XAF, utilisez ask
-            effective_rate = rate_data['ask']
-        else:
-            # XAF→EUR : vous vendez XAF, utilisez bid
-            effective_rate = 1.0 / rate_data['bid']
+    # --- MÉTHODE FOREX ---
+    if from_currency == base and to_currency == quote:
+        # On veut base→quote, on a base/quote
+        # Ex: XAF→EUR avec XAF/EUR bid=650, ask=660
+        # On vend XAF (base) pour acheter EUR (quote)
+        # La banque achète EUR à bid → 650 XAF = 1 EUR
+        # Donc 1 XAF = 1/650 EUR
+        # Mais pour nous, c'est défavorable, donc on utilise bid (le plus bas)
+        return 1.0 / ask
     
-    return effective_rate
+    elif from_currency == quote and to_currency == base:
+        # On veut quote→base, on a base/quote
+        # Ex: EUR→XAF avec XAF/EUR bid=650, ask=660
+        # On vend EUR (quote) pour acheter XAF (base)
+        # La banque achète EUR à bid → on reçoit 650 XAF par EUR
+        return bid
+    
+    else:
+        raise ValueError(f"Incohérence: paire {found_pair}, conversion {from_currency}→{to_currency}")
 
 
 def convert_to_eur(amount, currency, forex_rates):

@@ -9,17 +9,36 @@ from src.engine.arbitrage_engine import get_forex_rate
 class TestForexConversionNewFormat:
     """Tests avec nouveau format bid/ask/bank_spread_pct"""
     
-    def test_forex_xaf_to_eur_uses_bid(self, mock_forex_rates):
-        """XAF→EUR doit utiliser bid (vous vendez XAF contre EUR)"""
+    def test_forex_xaf_to_eur_uses_ask(self, mock_forex_rates):
+        """XAF→EUR doit utiliser ask (vous achetez EUR, banque vend à ask)"""
         rate = get_forex_rate("XAF", "EUR", mock_forex_rates, "forex")
-        expected = 1.0 / 650.0  # bid = 650
+        
+        expected = 1.0 / 660.0  # ask = 660
         assert abs(rate - expected) < 0.0001
     
-    def test_forex_eur_to_xaf_uses_ask(self, mock_forex_rates):
-        """EUR→XAF doit utiliser ask (vous achetez XAF avec EUR)"""
+    def test_forex_eur_to_xaf_uses_bid(self, mock_forex_rates):
+        """EUR→XAF doit utiliser bid (vous vendez EUR, banque achète à bid)"""
         rate = get_forex_rate("EUR", "XAF", mock_forex_rates, "forex")
-        expected = 660.0  # ask = 660
+        expected = 650.0  # bid = 650
         assert abs(rate - expected) < 0.0001
+
+    def test_forex_xaf_to_eur_ask_worse_than_bid(self, mock_forex_rates):
+        """Vérifier que ask donne un taux moins favorable que bid pour XAF→EUR"""
+        rate_ask = get_forex_rate("XAF", "EUR", mock_forex_rates, "forex")
+        # Si on utilisait bid (hypothétique)
+        rate_if_bid = 1.0 / 650.0
+        
+        # ask doit donner moins d'EUR (1/660 < 1/650)
+        assert rate_ask < rate_if_bid
+
+    def test_forex_eur_to_xaf_bid_worse_than_ask(self, mock_forex_rates):
+        """Vérifier que bid donne un taux moins favorable que ask pour EUR→XAF"""
+        rate_bid = get_forex_rate("EUR", "XAF", mock_forex_rates, "forex")
+        # Si on utilisait ask (hypothétique)
+        rate_if_ask = 660.0
+        
+        # bid doit donner moins de XAF (650 < 660)
+        assert rate_bid < rate_if_ask
     
     def test_bank_xaf_to_eur_applies_negative_spread(self, mock_forex_rates):
         """Banque XAF→EUR applique spread défavorable (mid - spread%)"""
@@ -40,10 +59,10 @@ class TestForexConversionNewFormat:
         rate_forex = get_forex_rate("EUR", "XAF", mock_forex_rates, "forex")
         
         # Bank doit être moins avantageux (plus cher)
-        assert rate_bank > rate_forex
+        assert rate_bank < rate_forex
         
         # Vérification : mid * (1 + spread%) = 655 * 1.015 = 664.825
-        expected = 655.0 * (1 + 0.015)
+        expected = 655.0 * (1 - 0.015)
         assert abs(rate_bank - expected) < 0.001
     
     @pytest.mark.parametrize("from_curr,to_curr", [
@@ -130,6 +149,7 @@ class TestForexConversionEdgeCases:
                 "bank_spread_pct": 1.0
             }
         }
+
         
         # XAF→EUR doit fonctionner via inverse
         rate = get_forex_rate("XAF", "EUR", rates_inverse, "forex")
