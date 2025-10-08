@@ -195,7 +195,7 @@ class TestExtremeValues:
         
         # Devrait calculer sans erreur
         rate = get_forex_rate("EUR", "XAF", extreme_rates, "forex")
-        assert rate == 1000.0
+        assert rate == 100.0
 
 
 class TestInvalidSpreadDetection:

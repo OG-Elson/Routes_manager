@@ -192,19 +192,21 @@ def get_forex_rate(from_currency, to_currency, forex_rates, conversion_method='f
         found_pair = inverse_pair
     else:
         raise ValueError(f"Taux de change manquant pour {from_currency}→{to_currency}")
-    
+        # Décomposer la paire trouvée
+    base, quote = found_pair.split('/')
+
     # ========== ANCIEN FORMAT ==========
     if isinstance(rate_data, (int, float)):
         if rate_data <= 0:
             raise ValueError(f"Taux forex invalide: {rate_data}")
 
-        # Déterminer si on doit inverser
-        if found_pair == pair:
-            # Paire directe trouvée
+         # On veut quote→base, on a base/quote
+        if from_currency == base and to_currency == quote:
+            return 1.0 / rate_data
+        elif from_currency == quote and to_currency == base:
             return rate_data
         else:
-            # Paire inverse trouvée
-            return 1.0 / rate_data
+            raise ValueError(f"Incohérence ancien format: {found_pair}, conversion {from_currency}→{to_currency}")
     
     # ========== NOUVEAU FORMAT ==========
     if not isinstance(rate_data, dict):
@@ -216,8 +218,7 @@ def get_forex_rate(from_currency, to_currency, forex_rates, conversion_method='f
     if bid <= 0 or ask <= 0:
         raise ValueError(f"Taux bid/ask invalides: bid={bid}, ask={ask}")
     
-    # Décomposer la paire trouvée
-    base, quote = found_pair.split('/')
+
     # --- MÉTHODE BANQUE ---
     if conversion_method == 'bank':
         mid_rate = (bid + ask) / 2
