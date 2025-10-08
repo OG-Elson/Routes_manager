@@ -514,6 +514,16 @@ def find_routes_with_filters(
                     logging.debug(f"Route {market_a['currency']}→{market_b['currency']} exclue")
                     continue
             
+            route = calculate_profit_route(
+					initial_usdt=1000, 
+					sourcing_code=market_a['currency'], 
+					selling_code=market_b['currency'], 
+					conversion_method=conversion_method
+            ) 
+
+            if route:
+                    all_routes.append(route)           
+            
 
     
     if not all_routes:
