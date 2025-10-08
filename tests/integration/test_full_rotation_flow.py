@@ -1,10 +1,13 @@
 """
 Tests d'intégration pour flux complets de rotation
 """
-import pytest
 import json
 from pathlib import Path
-from src.engine.arbitrage_engine import find_routes_with_filters, calculate_profit_route
+
+import pytest
+
+from src.engine.arbitrage_engine import (calculate_profit_route,
+                                         find_routes_with_filters)
 
 
 class TestFullRotationFlow:

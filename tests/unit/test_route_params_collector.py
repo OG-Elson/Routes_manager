@@ -2,12 +2,12 @@
 Tests unitaires pour route_params_collector
 Focus sur mocking inputs utilisateur
 """
-import pytest
 from unittest.mock import patch
-from src.utils.route_params_collector import (
-    collect_route_search_parameters,
-    collect_simulation_parameters
-)
+
+import pytest
+
+from src.utils.route_params_collector import (collect_route_search_parameters,
+                                              collect_simulation_parameters)
 
 # Applique un timeout à tous les tests de ce module pour éviter les boucles infinies
 pytestmark = pytest.mark.timeout(5.0) 

@@ -1,8 +1,8 @@
 # modules/simulation_module.py
 
+import json
 import os
 import sys
-import json
 from datetime import datetime
 from pathlib import Path
 
@@ -13,14 +13,16 @@ project_root = os.path.dirname(modules_dir)
 os.chdir(project_root)
 sys.path.insert(0, project_root)"""
 
-from src.utils.route_params_collector import collect_simulation_parameters
-from src.engine.arbitrage_engine import calculate_profit_route, markets, forex_rates
-from src.cli.daily_briefing import robust_csv_append, generate_new_rotation_id
-from src.engine.rotation_manager import RotationManager
 from rich.console import Console
 from rich.panel import Panel
-from rich.prompt import Prompt, Confirm, IntPrompt, FloatPrompt
+from rich.prompt import Confirm, FloatPrompt, IntPrompt, Prompt
 from rich.table import Table
+
+from src.cli.daily_briefing import generate_new_rotation_id, robust_csv_append
+from src.engine.arbitrage_engine import (calculate_profit_route, forex_rates,
+                                         markets)
+from src.engine.rotation_manager import RotationManager
+from src.utils.route_params_collector import collect_simulation_parameters
 
 console = Console()
 
@@ -97,7 +99,7 @@ class SimulationEngine:
     def _load_config(self):
         """Charge la configuration"""
         from pathlib import Path
-        
+
         # Remonter 3 niveaux : simulation_module.py -> modules/ -> src/ -> projet/
         project_root = Path(__file__).resolve().parent.parent.parent
         config_path = project_root / 'config.json'

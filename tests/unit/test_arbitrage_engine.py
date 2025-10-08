@@ -3,13 +3,11 @@ Tests unitaires pour le moteur d'arbitrage
 Focus sur calculate_profit_route() et find_routes_with_filters()
 """
 import pytest
-from src.engine.arbitrage_engine import (
-    calculate_profit_route,
-    find_routes_with_filters,
-    validate_config_coherence,
-    get_market_data,
-    safe_divide
-)
+
+from src.engine.arbitrage_engine import (calculate_profit_route,
+                                         find_routes_with_filters,
+                                         get_market_data, safe_divide,
+                                         validate_config_coherence)
 
 
 class TestCalculateProfitRoute:

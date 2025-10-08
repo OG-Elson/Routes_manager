@@ -2,6 +2,8 @@
 
 # modules/scenario_generator.py (EXTRAIT - PARTIE À CORRIGER)
 import json
+
+
 def calculate_transaction_amounts(capital_eur, expected_margin, nb_cycles=1):
     """Calcule les montants réels des transactions basés sur le capital et la marge"""
     

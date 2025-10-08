@@ -1,8 +1,9 @@
 # src/utils/route_params_collector.py
 
+from typing import List, Optional
+
 from rich.console import Console
 from rich.prompt import Confirm
-from typing import List, Optional
 
 console = Console()
 

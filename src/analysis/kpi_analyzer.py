@@ -1,13 +1,14 @@
 # kpi_analyzer.py
 
+import json
+import logging
+import os
+from datetime import datetime
+
 import pandas as pd
 from rich.console import Console
-from rich.table import Table
 from rich.panel import Panel
-from datetime import datetime
-import os
-import logging
-import json
+from rich.table import Table
 
 # --- CONFIGURATION DU LOGGING ---
 logging.basicConfig(filename='app.log', level=logging.INFO, 

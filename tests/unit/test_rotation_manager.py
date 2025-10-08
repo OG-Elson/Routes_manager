@@ -2,9 +2,11 @@
 Tests unitaires pour rotation_manager
 Focus sur gestion état rotations
 """
-import pytest
 import json
 from pathlib import Path
+
+import pytest
+
 from src.engine.rotation_manager import RotationManager
 
 

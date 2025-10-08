@@ -2,14 +2,13 @@
 Tests avancés pour cas limites et erreurs
 Basé sur test_advanced.py existant avec améliorations
 """
-import pytest
 import math
-from src.engine.arbitrage_engine import (
-    calculate_profit_route,
-    get_forex_rate,
-    safe_divide,
-    validate_config_coherence
-)
+
+import pytest
+
+from src.engine.arbitrage_engine import (calculate_profit_route,
+                                         get_forex_rate, safe_divide,
+                                         validate_config_coherence)
 
 
 class TestNaNAndInfinity:

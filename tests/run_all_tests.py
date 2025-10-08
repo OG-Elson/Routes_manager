@@ -4,8 +4,8 @@ Génère un rapport HTML et affiche résumé en console
 """
 import subprocess
 import sys
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 
 def run_tests_with_coverage():

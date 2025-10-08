@@ -1,18 +1,21 @@
 # daily_briefing.py
 import csv
-import pandas as pd
-from rich.console import Console
-from rich.table import Table
-from rich.panel import Panel
-from datetime import datetime
-import os
-import sys
 import json
 import logging
+import os
 import shutil
+import sys
+from datetime import datetime
 from pathlib import Path
+
+import pandas as pd
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+
 from src.engine.rotation_manager import RotationManager
 from src.utils.route_params_collector import collect_route_search_parameters
+
 # --- CONFIGURATION CHEMINS ---
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 CONFIG_PATH = PROJECT_ROOT / 'config.json'

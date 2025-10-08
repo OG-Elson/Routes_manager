@@ -3,6 +3,7 @@ Tests unitaires pour les conversions forex
 Focus sur get_forex_rate() avec formats bid/ask et bank
 """
 import pytest
+
 from src.engine.arbitrage_engine import get_forex_rate
 
 
