@@ -2,6 +2,7 @@
 
 from rich.console import Console
 from rich.prompt import Confirm
+from typing import List, Optional
 
 console = Console()
 
@@ -24,22 +25,30 @@ def _get_confirmed_input(prompt, validation_func=None, error_msg="Saisie invalid
             return None
 
 
+# --- NOUVELLE FONCTION D'AIDE pour la validation des marchés exclus ---
+def _parse_excluded_markets_input(input_str: str, available_currencies: List[str]) -> Optional[List[str]]:
+    """Parse la chaîne d'exclusion et valide chaque code devise."""
+    input_str = input_str.strip()
+    if not input_str:
+        return []
+
+    # Sépare par virgule, filtre les vides et met en majuscules
+    codes = [c.strip().upper() for c in input_str.split(',') if c.strip()]
+    
+    # Vérifie si toutes les devises sont valides
+    for code in codes:
+        if code not in available_currencies:
+            # Retourne None si une devise est invalide
+            return None 
+
+    return codes
+# ---------------------------------------------------------------------
+
+
 def collect_route_search_parameters(markets_list, config):
     """
     Collecte interactive des paramètres communs pour recherche de routes
-    
-    Args:
-        markets_list: Liste des marchés depuis config
-        config: Configuration complète
-    
-    Returns:
-        dict: {
-            'sourcing_currency': str,
-            'excluded_markets': list,
-            'loop_currency': str or None,
-            'conversion_method': str ('forex' or 'bank')
-        }
-        ou None si annulé
+    ...
     """
     
     available_currencies = [m['currency'] for m in markets_list]
@@ -56,7 +65,7 @@ def collect_route_search_parameters(markets_list, config):
         return None
     sourcing_currency = sourcing_currency.upper()
     
-    # 2. Monnaie de bouclage
+    # 2. Monnaie de bouclage (pas de changement)
     console.print("\n[yellow]Monnaie de bouclage[/yellow]")
     use_loop = _get_confirmed_input(
         "Voulez-vous forcer une monnaie de bouclage ? (o/n) : ",
@@ -92,19 +101,23 @@ def collect_route_search_parameters(markets_list, config):
         console.print(f"[yellow]Marchés disponibles :[/yellow] {', '.join(available_currencies)}")
         console.print("[dim]Les marchés exclus ne pourront pas être utilisés comme marché de vente[/dim]")
         
+        # MODIFICATION CRITIQUE ICI : Utilisation de la validation stricte pour les marchés exclus
         excluded_input = _get_confirmed_input(
             "Marchés à exclure (séparés par virgules) ou vide : ",
-            None
+            # Le validateur vérifie que l'entrée est bien parsable et que toutes les devises sont connues
+            lambda x: _parse_excluded_markets_input(x, available_currencies) is not None,
+            "Entrée invalide. Les codes devises doivent être séparés par des virgules et appartenir aux marchés disponibles."
         )
         if excluded_input is None:
             return None
         
-        if excluded_input.strip():
-            excluded_markets = [c.strip().upper() for c in excluded_input.split(',')]
-            excluded_markets = [c for c in excluded_markets if c in available_currencies]
+        # Le parsing est refait ici après la validation réussie
+        parsed_markets = _parse_excluded_markets_input(excluded_input, available_currencies)
+        if parsed_markets is not None: 
+            excluded_markets = parsed_markets
             
-            if loop_currency and loop_currency in excluded_markets:
-                console.print(f"[yellow]⚠️ {loop_currency} est exclu mais forcé comme bouclage → Priorité au bouclage[/yellow]")
+        if loop_currency and loop_currency in excluded_markets:
+            console.print(f"[yellow]⚠️ {loop_currency} est exclu mais forcé comme bouclage → Priorité au bouclage[/yellow]")
     
     # 4. Méthode de conversion
     console.print("\n[yellow]Méthode de conversion fiat[/yellow]")
@@ -114,21 +127,27 @@ def collect_route_search_parameters(markets_list, config):
     console.print("  [cyan]2.[/cyan] BANQUE - Spread additionnel")
     console.print(f"  [dim]Entrée = Défaut ({default_method.upper()})[/dim]")
     
+    # MODIFICATION CRITIQUE ICI : Ajout de 'forex' et 'bank' dans la validation
     method_choice = _get_confirmed_input(
-        "Choisissez (1/2 ou Entrée) : ",
-        lambda x: x in ['1', '2', ''],
-        "Choisissez 1, 2 ou Entrée"
+        "Choisissez (1/2, 'forex', 'bank', ou Entrée) : ",
+        lambda x: x.lower() in ['1', '2', 'forex', 'bank', ''],
+        "Choisissez 1, 2, 'forex', 'bank' ou Entrée"
     )
     
     if method_choice is None:
         return None
     
-    if method_choice == '':
+    method_choice_lower = method_choice.lower()
+    
+    if method_choice_lower == '':
         conversion_method = default_method
-    elif method_choice == '1':
+    elif method_choice_lower == '1' or method_choice_lower == 'forex':
         conversion_method = 'forex'
-    else:
+    elif method_choice_lower == '2' or method_choice_lower == 'bank':
         conversion_method = 'bank'
+    else:
+        # Cas impossible avec la validation, mais garde la valeur par défaut si un problème survient
+        conversion_method = default_method
     
     console.print(f"[green]✓[/green] Méthode sélectionnée : {conversion_method.upper()}")
     
@@ -140,27 +159,10 @@ def collect_route_search_parameters(markets_list, config):
     }
 
 
-
-
 def collect_simulation_parameters(markets_list, config):
     """
     Collecte tous les paramètres pour simulation
-    Inclut les paramètres de recherche de routes + paramètres spécifiques simulation
-    
-    Args:
-        markets_list: Liste des marchés depuis config
-        config: Configuration complète
-    
-    Returns:
-        dict: {
-            'sourcing_currency': str,
-            'nb_cycles': int,
-            'loop_currency': str or None,
-            'soft_excluded': list,
-            'initial_capital': float,
-            'conversion_method': str
-        }
-        ou None si annulé
+    ...
     """
     from rich.panel import Panel
     
@@ -175,7 +177,7 @@ def collect_simulation_parameters(markets_list, config):
     if route_params is None:
         return None
     
-    # ========== FONCTION INTERNE AVEC GESTION D'ERREURS COMPLÈTE ==========
+    # ========== FONCTION INTERNE AVEC GESTION D'ERREURS COMPLÈTE (Pas de changement) ==========
     def get_numeric_input_robust(prompt, input_type=float, min_val=0):
         """Saisie numérique ULTRA-sécurisée (copie exacte de votre version)"""
         def is_valid_number(v):
@@ -194,6 +196,7 @@ def collect_simulation_parameters(markets_list, config):
                 return False
         
         while True:
+            # Remplacement de l'ancien appel _get_confirmed_input par le nouveau
             value_str = _get_confirmed_input(
                 prompt + " (tapez 'annuler' pour quitter) : ",
                 is_valid_number,

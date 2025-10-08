@@ -139,7 +139,7 @@ class TestForexConversionEdgeCases:
         expected_bank = 1.0 / 655.0
         assert abs(rate_bank - expected_bank) < 0.0001
         
-    @pytest.mark.skip(reason="Asymétrie bid/ask non résolue - à traiter en dernier")
+    #@pytest.mark.skip(reason="Asymétrie bid/ask non résolue - à traiter en dernier")
     def test_inverse_pair_lookup(self, mock_forex_rates):
         """Si XAF/EUR absent mais EUR/XAF présent, utilise inverse"""
         # Créer un forex_rates avec seulement EUR/XAF

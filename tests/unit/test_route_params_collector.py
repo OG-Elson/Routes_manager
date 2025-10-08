@@ -89,62 +89,67 @@ class TestCollectRouteSearchParameters:
 
         assert result['conversion_method'] == 'forex'
 
-    @pytest.mark.skip(reason="probleme de boucle infini")
     @patch('src.utils.route_params_collector.console.input')
     @patch('rich.prompt.Confirm.ask')
     @patch('src.utils.route_params_collector.console.print') 
     def test_explicit_bank_conversion(self, mock_print, mock_confirm, mock_input, mock_markets, mock_config_valid):
-        """Méthode de conversion peut être forcée à 'bank'"""
+        """Méthode de conversion peut être forcée à 'bank' (4 appels)"""
 
+        # Annulation et option de bouclage désactivées par défaut
         mock_confirm.return_value = False 
 
-        # CORRECTION SEQUENCE (Ajout d'un 5ème input pour éviter StopIteration)
-        # 4 entrées sont nécessaires pour le succès, la 5ème est un 'buffer'
-        mock_input.side_effect = ['EUR', 'n', 'n', 'bank', 'bank']
+        # Séquence de 4 inputs (minimum requis): 
+        # [Sourcing(EUR), Exclure(n), Bouclage(n), Conversion(bank)]
+        mock_input.side_effect = ['EUR', 'n', 'n', 'bank']
 
         result = collect_route_search_parameters(mock_markets, mock_config_valid)
 
-        # L'assertion du nombre d'appels doit correspondre au nombre de prompts requis (4) ou au nombre total utilisé.
-        # Nous allons assouplir l'assertion pour le moment pour éliminer l'erreur.
+        assert mock_input.call_count == 4
         assert result['conversion_method'] == 'bank'
-        assert mock_input.call_count == 5
 
-    @pytest.mark.skip(reason="probleme de boucle infini")
     @patch('src.utils.route_params_collector.console.input')
     @patch('rich.prompt.Confirm.ask')
     @patch('src.utils.route_params_collector.console.print') 
     def test_loop_currency_forced(self, mock_print, mock_confirm, mock_input, mock_markets, mock_config_valid):
-        """Forcer une devise de bouclage spécifique (XOF)"""
+        """Forcer une devise de bouclage spécifique (XOF) (4 appels)"""
         
-        # CORRECTION CRITIQUE : Défini à True pour entrer dans la section de saisie de la devise de bouclage.
+        # Le Confirm.ask() du code est utilisé pour demander si l'on veut forcer une devise de bouclage.
         mock_confirm.return_value = True 
-
-        # [Sourcing (fail), Sourcing (OK), Exclure (n), Devise Loop (XOF), Conversion (vide)]
-        mock_input.side_effect = ['EUR', 'EUR', 'n', 'XOF', ''] 
+        # Séquence correcte (5 inputs) :
+        # 1. Sourcing (EUR)
+        # 2. Voulez-vous forcer bouclage ? (o)
+        # 3. Devise de bouclage (XOF)
+        # 4. Voulez-vous exclure ? (n)
+        # 5. Conversion ('' = défaut)
+        mock_input.side_effect = ['EUR', 'o', 'XOF', 'n', '']
 
         result = collect_route_search_parameters(mock_markets, mock_config_valid)
 
-        # Vérification explicite pour le cas de retour None
         assert result is not None, "La fonction ne doit pas retourner None car l'annulation est bloquée."
         assert mock_input.call_count == 5
         assert result['loop_currency'] == 'XOF'
          
-    @pytest.mark.skip(reason="probleme de boucle infini")
     @patch('src.utils.route_params_collector.console.input')
     @patch('rich.prompt.Confirm.ask')
     @patch('src.utils.route_params_collector.console.print') 
     def test_exclusion_markets(self, mock_print, mock_confirm, mock_input, mock_markets, mock_config_valid):
-        """Exclure des marchés spécifiques (XOF, KES)"""
+        """Exclure des marchés spécifiques (XOF, KES) (5 appels)"""
         
+        # Annulation et option de bouclage désactivées par défaut
         mock_confirm.return_value = False 
 
-        # CORRECTION SEQUENCE (Ajout d'un 6ème input pour éviter StopIteration)
-        # 5 entrées sont nécessaires pour le succès, la 6ème est un 'buffer'
-        mock_input.side_effect = ['EUR', 'o', 'XOF,KES', 'n', '', '','']
+        # Séquence correcte (6 inputs) :
+        # 1. Sourcing (EUR)
+        # 2. Voulez-vous forcer bouclage ? (n)
+        # 3. Voulez-vous exclure ? (o)
+        # 4. Liste exclusion (XOF,KES)
+        # 5. Conversion (invalide 'n')
+        # 6. Conversion (valide '')
+        mock_input.side_effect = ['EUR', 'n', 'o', 'XOF,KES', 'n', '']
 
         result = collect_route_search_parameters(mock_markets, mock_config_valid)
-        # Le nombre de prompts nominal pour ce test est 5
-        assert mock_input.call_count == 5
+        
+        assert mock_input.call_count == 6
         assert result['excluded_markets'] == ['XOF', 'KES']
         
 # ---
