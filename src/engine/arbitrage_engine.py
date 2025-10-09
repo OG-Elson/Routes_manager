@@ -515,10 +515,10 @@ def find_routes_with_filters(
                     continue
 
             route = calculate_profit_route(
-					initial_usdt=1000,
-					sourcing_code=market_a['currency'],
-					selling_code=market_b['currency'],
-					conversion_method=conversion_method
+                    initial_usdt=1000,
+                    sourcing_code=market_a['currency'],
+                    selling_code=market_b['currency'],
+                    conversion_method=conversion_method
             )
 
             if route:
