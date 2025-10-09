@@ -1,0 +1,815 @@
+************* Module conftest
+conftest.py:12:0: C0305: Trailing newlines (trailing-newlines)
+************* Module src.analysis.kpi_analyzer
+src\analysis\kpi_analyzer.py:75:0: C0301: Line too long (111/100) (line-too-long)
+src\analysis\kpi_analyzer.py:86:0: C0301: Line too long (102/100) (line-too-long)
+src\analysis\kpi_analyzer.py:106:0: C0301: Line too long (111/100) (line-too-long)
+src\analysis\kpi_analyzer.py:121:0: C0301: Line too long (103/100) (line-too-long)
+src\analysis\kpi_analyzer.py:125:0: C0301: Line too long (124/100) (line-too-long)
+src\analysis\kpi_analyzer.py:127:0: C0301: Line too long (137/100) (line-too-long)
+src\analysis\kpi_analyzer.py:169:0: C0301: Line too long (102/100) (line-too-long)
+src\analysis\kpi_analyzer.py:173:0: C0301: Line too long (121/100) (line-too-long)
+src\analysis\kpi_analyzer.py:189:0: C0301: Line too long (107/100) (line-too-long)
+src\analysis\kpi_analyzer.py:190:0: C0301: Line too long (105/100) (line-too-long)
+src\analysis\kpi_analyzer.py:227:0: C0301: Line too long (102/100) (line-too-long)
+src\analysis\kpi_analyzer.py:262:0: C0301: Line too long (127/100) (line-too-long)
+src\analysis\kpi_analyzer.py:263:0: C0301: Line too long (119/100) (line-too-long)
+src\analysis\kpi_analyzer.py:290:0: C0301: Line too long (132/100) (line-too-long)
+src\analysis\kpi_analyzer.py:312:0: C0301: Line too long (118/100) (line-too-long)
+src\analysis\kpi_analyzer.py:353:0: C0301: Line too long (117/100) (line-too-long)
+src\analysis\kpi_analyzer.py:358:0: C0325: Unnecessary parens after '=' keyword (superfluous-parens)
+src\analysis\kpi_analyzer.py:363:0: C0301: Line too long (107/100) (line-too-long)
+src\analysis\kpi_analyzer.py:367:0: C0301: Line too long (107/100) (line-too-long)
+src\analysis\kpi_analyzer.py:401:0: C0301: Line too long (125/100) (line-too-long)
+src\analysis\kpi_analyzer.py:406:0: C0301: Line too long (102/100) (line-too-long)
+src\analysis\kpi_analyzer.py:490:0: C0301: Line too long (134/100) (line-too-long)
+src\analysis\kpi_analyzer.py:497:0: C0301: Line too long (105/100) (line-too-long)
+src\analysis\kpi_analyzer.py:498:0: C0301: Line too long (103/100) (line-too-long)
+src\analysis\kpi_analyzer.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src\analysis\kpi_analyzer.py:68:0: R0914: Too many local variables (19/15) (too-many-locals)
+src\analysis\kpi_analyzer.py:136:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src\analysis\kpi_analyzer.py:82:12: W0702: No exception type(s) specified (bare-except)
+src\analysis\kpi_analyzer.py:200:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src\analysis\kpi_analyzer.py:262:18: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\analysis\kpi_analyzer.py:263:18: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\analysis\kpi_analyzer.py:204:46: W0613: Unused argument 'show_details_for_rotation' (unused-argument)
+src\analysis\kpi_analyzer.py:265:0: R0914: Too many local variables (25/15) (too-many-locals)
+src\analysis\kpi_analyzer.py:280:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src\analysis\kpi_analyzer.py:381:15: W0718: Catching too general exception Exception (broad-exception-caught)
+src\analysis\kpi_analyzer.py:301:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\analysis\kpi_analyzer.py:325:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\analysis\kpi_analyzer.py:347:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\analysis\kpi_analyzer.py:362:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\analysis\kpi_analyzer.py:366:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\analysis\kpi_analyzer.py:383:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\analysis\kpi_analyzer.py:406:22: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\analysis\kpi_analyzer.py:265:0: R0912: Too many branches (22/12) (too-many-branches)
+src\analysis\kpi_analyzer.py:265:0: R0915: Too many statements (77/50) (too-many-statements)
+src\analysis\kpi_analyzer.py:487:18: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+************* Module src.cli.daily_briefing
+src\cli\daily_briefing.py:72:0: C0301: Line too long (121/100) (line-too-long)
+src\cli\daily_briefing.py:114:0: C0301: Line too long (148/100) (line-too-long)
+src\cli\daily_briefing.py:115:0: C0301: Line too long (109/100) (line-too-long)
+src\cli\daily_briefing.py:119:0: C0301: Line too long (113/100) (line-too-long)
+src\cli\daily_briefing.py:147:0: C0301: Line too long (129/100) (line-too-long)
+src\cli\daily_briefing.py:151:0: C0301: Line too long (126/100) (line-too-long)
+src\cli\daily_briefing.py:152:0: C0301: Line too long (108/100) (line-too-long)
+src\cli\daily_briefing.py:168:0: C0301: Line too long (115/100) (line-too-long)
+src\cli\daily_briefing.py:186:0: C0301: Line too long (116/100) (line-too-long)
+src\cli\daily_briefing.py:261:0: C0301: Line too long (102/100) (line-too-long)
+src\cli\daily_briefing.py:271:0: C0301: Line too long (107/100) (line-too-long)
+src\cli\daily_briefing.py:299:0: C0301: Line too long (108/100) (line-too-long)
+src\cli\daily_briefing.py:303:0: C0301: Line too long (121/100) (line-too-long)
+src\cli\daily_briefing.py:333:0: C0301: Line too long (122/100) (line-too-long)
+src\cli\daily_briefing.py:353:0: C0301: Line too long (133/100) (line-too-long)
+src\cli\daily_briefing.py:354:0: C0301: Line too long (110/100) (line-too-long)
+src\cli\daily_briefing.py:362:0: C0301: Line too long (106/100) (line-too-long)
+src\cli\daily_briefing.py:366:0: C0301: Line too long (125/100) (line-too-long)
+src\cli\daily_briefing.py:367:0: C0301: Line too long (147/100) (line-too-long)
+src\cli\daily_briefing.py:369:0: C0301: Line too long (111/100) (line-too-long)
+src\cli\daily_briefing.py:393:0: C0301: Line too long (133/100) (line-too-long)
+src\cli\daily_briefing.py:402:0: C0301: Line too long (123/100) (line-too-long)
+src\cli\daily_briefing.py:416:0: C0301: Line too long (107/100) (line-too-long)
+src\cli\daily_briefing.py:438:0: C0301: Line too long (153/100) (line-too-long)
+src\cli\daily_briefing.py:455:0: C0301: Line too long (120/100) (line-too-long)
+src\cli\daily_briefing.py:514:0: C0301: Line too long (129/100) (line-too-long)
+src\cli\daily_briefing.py:515:0: C0301: Line too long (105/100) (line-too-long)
+src\cli\daily_briefing.py:519:0: C0301: Line too long (102/100) (line-too-long)
+src\cli\daily_briefing.py:526:0: W0311: Bad indentation. Found 25 spaces, expected 24 (bad-indentation)
+src\cli\daily_briefing.py:527:0: C0301: Line too long (108/100) (line-too-long)
+src\cli\daily_briefing.py:531:0: C0301: Line too long (117/100) (line-too-long)
+src\cli\daily_briefing.py:534:0: C0301: Line too long (113/100) (line-too-long)
+src\cli\daily_briefing.py:541:0: C0301: Line too long (104/100) (line-too-long)
+src\cli\daily_briefing.py:557:0: C0301: Line too long (114/100) (line-too-long)
+src\cli\daily_briefing.py:569:0: C0301: Line too long (155/100) (line-too-long)
+src\cli\daily_briefing.py:575:0: C0301: Line too long (124/100) (line-too-long)
+src\cli\daily_briefing.py:576:0: C0301: Line too long (134/100) (line-too-long)
+src\cli\daily_briefing.py:577:0: C0301: Line too long (109/100) (line-too-long)
+src\cli\daily_briefing.py:598:0: C0301: Line too long (114/100) (line-too-long)
+src\cli\daily_briefing.py:609:0: C0301: Line too long (128/100) (line-too-long)
+src\cli\daily_briefing.py:612:0: C0301: Line too long (128/100) (line-too-long)
+src\cli\daily_briefing.py:615:0: C0301: Line too long (121/100) (line-too-long)
+src\cli\daily_briefing.py:624:0: C0301: Line too long (116/100) (line-too-long)
+src\cli\daily_briefing.py:627:0: C0301: Line too long (121/100) (line-too-long)
+src\cli\daily_briefing.py:640:0: C0301: Line too long (129/100) (line-too-long)
+src\cli\daily_briefing.py:661:0: C0301: Line too long (104/100) (line-too-long)
+src\cli\daily_briefing.py:670:0: C0301: Line too long (102/100) (line-too-long)
+src\cli\daily_briefing.py:693:0: C0301: Line too long (120/100) (line-too-long)
+src\cli\daily_briefing.py:706:0: C0301: Line too long (102/100) (line-too-long)
+src\cli\daily_briefing.py:757:0: C0301: Line too long (116/100) (line-too-long)
+src\cli\daily_briefing.py:767:0: C0301: Line too long (134/100) (line-too-long)
+src\cli\daily_briefing.py:768:0: C0301: Line too long (164/100) (line-too-long)
+src\cli\daily_briefing.py:795:0: C0301: Line too long (150/100) (line-too-long)
+src\cli\daily_briefing.py:866:0: C0301: Line too long (102/100) (line-too-long)
+src\cli\daily_briefing.py:907:0: C0301: Line too long (114/100) (line-too-long)
+src\cli\daily_briefing.py:908:0: C0301: Line too long (104/100) (line-too-long)
+src\cli\daily_briefing.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src\cli\daily_briefing.py:44:4: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:45:10: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:48:4: R1722: Consider using 'sys.exit' instead (consider-using-sys-exit)
+src\cli\daily_briefing.py:55:4: R1722: Consider using 'sys.exit' instead (consider-using-sys-exit)
+src\cli\daily_briefing.py:58:0: C0116: Missing function or method docstring (missing-function-docstring)
+src\cli\daily_briefing.py:62:12: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+src\cli\daily_briefing.py:71:0: C0116: Missing function or method docstring (missing-function-docstring)
+src\cli\daily_briefing.py:107:0: C0116: Missing function or method docstring (missing-function-docstring)
+src\cli\daily_briefing.py:111:39: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:112:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+src\cli\daily_briefing.py:122:0: R0914: Too many local variables (16/15) (too-many-locals)
+src\cli\daily_briefing.py:143:62: W0621: Redefining name 'f' from outer scope (line 38) (redefined-outer-name)
+src\cli\daily_briefing.py:209:15: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:152:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:177:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:181:26: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:210:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:122:0: R0912: Too many branches (26/12) (too-many-branches)
+src\cli\daily_briefing.py:122:0: R0915: Too many statements (66/50) (too-many-statements)
+src\cli\daily_briefing.py:257:59: W0621: Redefining name 'f' from outer scope (line 38) (redefined-outer-name)
+src\cli\daily_briefing.py:280:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:260:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:281:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:238:0: R0911: Too many return statements (7/6) (too-many-return-statements)
+src\cli\daily_briefing.py:285:0: C0116: Missing function or method docstring (missing-function-docstring)
+src\cli\daily_briefing.py:297:0: C0116: Missing function or method docstring (missing-function-docstring)
+src\cli\daily_briefing.py:297:0: R0914: Too many local variables (37/15) (too-many-locals)
+src\cli\daily_briefing.py:323:26: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:336:23: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:337:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:343:19: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:341:16: C0415: Import outside toplevel (src.analysis.kpi_analyzer.analyze_transactions) (import-outside-toplevel)
+src\cli\daily_briefing.py:345:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:354:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:393:22: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:396:32: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:399:36: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:405:35: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:408:26: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:416:26: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:418:16: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:441:33: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:443:45: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:444:32: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:447:33: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:457:41: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:458:28: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:461:35: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:464:36: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:467:26: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:484:22: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:493:30: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:507:38: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:514:30: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:530:23: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:531:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:297:0: R0911: Too many return statements (13/6) (too-many-return-statements)
+src\cli\daily_briefing.py:297:0: R0912: Too many branches (43/12) (too-many-branches)
+src\cli\daily_briefing.py:297:0: R0915: Too many statements (136/50) (too-many-statements)
+src\cli\daily_briefing.py:297:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+src\cli\daily_briefing.py:582:55: W0621: Redefining name 'f' from outer scope (line 38) (redefined-outer-name)
+src\cli\daily_briefing.py:551:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:553:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:570:27: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:575:109: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:576:117: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:577:94: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:584:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:585:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:598:4: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:536:0: R0911: Too many return statements (10/6) (too-many-return-statements)
+src\cli\daily_briefing.py:603:0: C0116: Missing function or method docstring (missing-function-docstring)
+src\cli\daily_briefing.py:633:30: C0321: More than one statement on a single line (multiple-statements)
+src\cli\daily_briefing.py:693:22: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:812:55: W0621: Redefining name 'f' from outer scope (line 38) (redefined-outer-name)
+src\cli\daily_briefing.py:808:22: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src\cli\daily_briefing.py:869:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:821:21: R1728: Consider using a generator instead 'max(p.get('cycle', 1) for p in phases)' (consider-using-generator)
+src\cli\daily_briefing.py:866:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:870:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:926:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:878:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:909:23: W0718: Catching too general exception Exception (broad-exception-caught)
+src\cli\daily_briefing.py:911:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\cli\daily_briefing.py:929:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+************* Module src.engine.arbitrage_engine
+src\engine\arbitrage_engine.py:36:0: C0301: Line too long (113/100) (line-too-long)
+src\engine\arbitrage_engine.py:45:0: C0301: Line too long (116/100) (line-too-long)
+src\engine\arbitrage_engine.py:57:0: C0301: Line too long (106/100) (line-too-long)
+src\engine\arbitrage_engine.py:69:0: C0301: Line too long (115/100) (line-too-long)
+src\engine\arbitrage_engine.py:78:0: C0301: Line too long (116/100) (line-too-long)
+src\engine\arbitrage_engine.py:85:0: C0301: Line too long (116/100) (line-too-long)
+src\engine\arbitrage_engine.py:92:0: C0301: Line too long (114/100) (line-too-long)
+src\engine\arbitrage_engine.py:132:0: C0301: Line too long (147/100) (line-too-long)
+src\engine\arbitrage_engine.py:139:0: C0301: Line too long (125/100) (line-too-long)
+src\engine\arbitrage_engine.py:209:0: C0301: Line too long (114/100) (line-too-long)
+src\engine\arbitrage_engine.py:242:0: C0301: Line too long (106/100) (line-too-long)
+src\engine\arbitrage_engine.py:262:0: C0301: Line too long (102/100) (line-too-long)
+src\engine\arbitrage_engine.py:367:0: C0301: Line too long (109/100) (line-too-long)
+src\engine\arbitrage_engine.py:379:0: C0301: Line too long (114/100) (line-too-long)
+src\engine\arbitrage_engine.py:391:0: C0301: Line too long (107/100) (line-too-long)
+src\engine\arbitrage_engine.py:416:0: C0301: Line too long (157/100) (line-too-long)
+src\engine\arbitrage_engine.py:417:0: C0301: Line too long (144/100) (line-too-long)
+src\engine\arbitrage_engine.py:418:0: C0301: Line too long (180/100) (line-too-long)
+src\engine\arbitrage_engine.py:422:0: C0301: Line too long (144/100) (line-too-long)
+src\engine\arbitrage_engine.py:423:0: C0301: Line too long (140/100) (line-too-long)
+src\engine\arbitrage_engine.py:424:0: C0301: Line too long (175/100) (line-too-long)
+src\engine\arbitrage_engine.py:426:0: C0301: Line too long (143/100) (line-too-long)
+src\engine\arbitrage_engine.py:525:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\arbitrage_engine.py:543:0: C0301: Line too long (108/100) (line-too-long)
+src\engine\arbitrage_engine.py:547:0: C0301: Line too long (107/100) (line-too-long)
+src\engine\arbitrage_engine.py:552:0: C0301: Line too long (103/100) (line-too-long)
+src\engine\arbitrage_engine.py:561:0: C0301: Line too long (101/100) (line-too-long)
+src\engine\arbitrage_engine.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src\engine\arbitrage_engine.py:17:4: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:18:4: R1722: Consider using 'sys.exit' instead (consider-using-sys-exit)
+src\engine\arbitrage_engine.py:22:0: R0914: Too many local variables (17/15) (too-many-locals)
+src\engine\arbitrage_engine.py:22:30: W0621: Redefining name 'markets' from outer scope (line 11) (redefined-outer-name)
+src\engine\arbitrage_engine.py:22:39: W0621: Redefining name 'forex_rates' from outer scope (line 12) (redefined-outer-name)
+src\engine\arbitrage_engine.py:42:26: W0109: Duplicate key 'severity' in dictionary (duplicate-key)
+src\engine\arbitrage_engine.py:102:4: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:22:0: R0912: Too many branches (21/12) (too-many-branches)
+src\engine\arbitrage_engine.py:161:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:166:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:170:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:173:47: W0621: Redefining name 'forex_rates' from outer scope (line 12) (redefined-outer-name)
+src\engine\arbitrage_engine.py:204:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+src\engine\arbitrage_engine.py:227:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+src\engine\arbitrage_engine.py:245:4: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+src\engine\arbitrage_engine.py:173:0: R0911: Too many return statements (7/6) (too-many-return-statements)
+src\engine\arbitrage_engine.py:173:0: R0912: Too many branches (18/12) (too-many-branches)
+src\engine\arbitrage_engine.py:265:37: W0621: Redefining name 'forex_rates' from outer scope (line 12) (redefined-outer-name)
+src\engine\arbitrage_engine.py:271:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:291:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:317:0: R0914: Too many local variables (27/15) (too-many-locals)
+src\engine\arbitrage_engine.py:324:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:330:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:341:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:372:4: C0103: Variable name "revenu_brut_B_local" doesn't conform to snake_case naming style (invalid-name)
+src\engine\arbitrage_engine.py:374:4: C0103: Variable name "revenu_net_B_local" doesn't conform to snake_case naming style (invalid-name)
+src\engine\arbitrage_engine.py:317:0: R0911: Too many return statements (12/6) (too-many-return-statements)
+src\engine\arbitrage_engine.py:317:0: R0915: Too many statements (52/50) (too-many-statements)
+src\engine\arbitrage_engine.py:443:0: R0913: Too many arguments (7/5) (too-many-arguments)
+src\engine\arbitrage_engine.py:443:0: R0917: Too many positional arguments (7/5) (too-many-positional-arguments)
+src\engine\arbitrage_engine.py:443:0: R0914: Too many local variables (18/15) (too-many-locals)
+src\engine\arbitrage_engine.py:483:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:489:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:514:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:543:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:547:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:552:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\arbitrage_engine.py:443:0: R0912: Too many branches (17/12) (too-many-branches)
+src\engine\arbitrage_engine.py:585:11: W0718: Catching too general exception Exception (broad-exception-caught)
+************* Module src.engine.rotation_manager
+src\engine\rotation_manager.py:18:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:19:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:20:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:21:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:22:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:24:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:25:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:26:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:29:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:30:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:31:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:33:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:34:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:36:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:37:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:38:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:39:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:40:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:41:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:43:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:44:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:47:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:48:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:49:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:50:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:51:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:53:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:54:0: W0311: Bad indentation. Found 28 spaces, expected 24 (bad-indentation)
+src\engine\rotation_manager.py:55:0: W0311: Bad indentation. Found 28 spaces, expected 24 (bad-indentation)
+src\engine\rotation_manager.py:57:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:59:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:60:0: W0311: Bad indentation. Found 28 spaces, expected 24 (bad-indentation)
+src\engine\rotation_manager.py:61:0: W0311: Bad indentation. Found 28 spaces, expected 24 (bad-indentation)
+src\engine\rotation_manager.py:63:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:64:0: W0311: Bad indentation. Found 28 spaces, expected 24 (bad-indentation)
+src\engine\rotation_manager.py:65:0: W0311: Bad indentation. Found 28 spaces, expected 24 (bad-indentation)
+src\engine\rotation_manager.py:67:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:69:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:70:0: C0301: Line too long (113/100) (line-too-long)
+src\engine\rotation_manager.py:70:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:73:0: C0301: Line too long (114/100) (line-too-long)
+src\engine\rotation_manager.py:73:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:74:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:75:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:76:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:77:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:78:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:81:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:84:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:85:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:86:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:87:0: W0311: Bad indentation. Found 28 spaces, expected 24 (bad-indentation)
+src\engine\rotation_manager.py:88:0: W0311: Bad indentation. Found 32 spaces, expected 28 (bad-indentation)
+src\engine\rotation_manager.py:89:0: C0301: Line too long (105/100) (line-too-long)
+src\engine\rotation_manager.py:89:0: W0311: Bad indentation. Found 28 spaces, expected 24 (bad-indentation)
+src\engine\rotation_manager.py:90:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:91:0: W0311: Bad indentation. Found 28 spaces, expected 24 (bad-indentation)
+src\engine\rotation_manager.py:92:0: W0311: Bad indentation. Found 24 spaces, expected 20 (bad-indentation)
+src\engine\rotation_manager.py:94:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:96:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:97:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:98:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:101:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:104:0: C0301: Line too long (111/100) (line-too-long)
+src\engine\rotation_manager.py:104:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:105:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:107:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:109:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:110:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:114:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:116:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:120:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:122:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:124:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+src\engine\rotation_manager.py:125:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:128:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:129:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
+src\engine\rotation_manager.py:131:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+src\engine\rotation_manager.py:163:0: C0301: Line too long (104/100) (line-too-long)
+src\engine\rotation_manager.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src\engine\rotation_manager.py:33:23: W0718: Catching too general exception Exception (broad-exception-caught)
+src\engine\rotation_manager.py:30:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:34:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:39:20: W0702: No exception type(s) specified (bare-except)
+src\engine\rotation_manager.py:38:24: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:96:23: W0718: Catching too general exception Exception (broad-exception-caught)
+src\engine\rotation_manager.py:70:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:77:27: W0718: Catching too general exception Exception (broad-exception-caught)
+src\engine\rotation_manager.py:76:24: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:78:24: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:90:31: W0718: Catching too general exception Exception (broad-exception-caught)
+src\engine\rotation_manager.py:89:28: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:91:28: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:97:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:46:4: R0911: Too many return statements (7/6) (too-many-return-statements)
+src\engine\rotation_manager.py:124:19: W0718: Catching too general exception Exception (broad-exception-caught)
+src\engine\rotation_manager.py:125:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:136:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:148:4: C0116: Missing function or method docstring (missing-function-docstring)
+src\engine\rotation_manager.py:159:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+src\engine\rotation_manager.py:181:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+************* Module src.modules.scenario_generator
+src\modules\scenario_generator.py:80:0: C0301: Line too long (104/100) (line-too-long)
+src\modules\scenario_generator.py:91:0: C0301: Line too long (108/100) (line-too-long)
+src\modules\scenario_generator.py:332:0: C0301: Line too long (101/100) (line-too-long)
+src\modules\scenario_generator.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src\modules\scenario_generator.py:66:25: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:102:47: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:103:40: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:246:35: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:247:28: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:264:35: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:265:28: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:286:35: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:287:28: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:308:39: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:309:32: E0602: Undefined variable 'final_capital' (undefined-variable)
+src\modules\scenario_generator.py:322:9: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
+************* Module src.modules.simulation_module
+src\modules\simulation_module.py:78:0: C0301: Line too long (126/100) (line-too-long)
+src\modules\simulation_module.py:132:0: C0301: Line too long (101/100) (line-too-long)
+src\modules\simulation_module.py:192:0: C0301: Line too long (102/100) (line-too-long)
+src\modules\simulation_module.py:193:0: C0301: Line too long (110/100) (line-too-long)
+src\modules\simulation_module.py:207:0: C0301: Line too long (133/100) (line-too-long)
+src\modules\simulation_module.py:248:0: C0301: Line too long (101/100) (line-too-long)
+src\modules\simulation_module.py:309:0: C0301: Line too long (145/100) (line-too-long)
+src\modules\simulation_module.py:316:0: C0301: Line too long (113/100) (line-too-long)
+src\modules\simulation_module.py:336:0: C0301: Line too long (119/100) (line-too-long)
+src\modules\simulation_module.py:339:0: C0301: Line too long (106/100) (line-too-long)
+src\modules\simulation_module.py:357:0: C0301: Line too long (104/100) (line-too-long)
+src\modules\simulation_module.py:443:0: C0301: Line too long (105/100) (line-too-long)
+src\modules\simulation_module.py:473:0: C0301: Line too long (117/100) (line-too-long)
+src\modules\simulation_module.py:476:0: C0301: Line too long (108/100) (line-too-long)
+src\modules\simulation_module.py:477:0: C0301: Line too long (105/100) (line-too-long)
+src\modules\simulation_module.py:483:0: C0301: Line too long (108/100) (line-too-long)
+src\modules\simulation_module.py:536:0: C0301: Line too long (109/100) (line-too-long)
+src\modules\simulation_module.py:542:0: C0301: Line too long (104/100) (line-too-long)
+src\modules\simulation_module.py:555:0: C0301: Line too long (117/100) (line-too-long)
+src\modules\simulation_module.py:556:0: C0301: Line too long (108/100) (line-too-long)
+src\modules\simulation_module.py:579:0: C0301: Line too long (109/100) (line-too-long)
+src\modules\simulation_module.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src\modules\simulation_module.py:38:20: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+src\modules\simulation_module.py:94:8: W0621: Redefining name 'Path' from outer scope (line 5) (redefined-outer-name)
+src\modules\simulation_module.py:94:8: W0404: Reimport 'Path' (imported line 5) (reimported)
+src\modules\simulation_module.py:94:8: C0415: Import outside toplevel (pathlib.Path) (import-outside-toplevel)
+src\modules\simulation_module.py:122:4: R0911: Too many return statements (8/6) (too-many-return-statements)
+src\modules\simulation_module.py:235:16: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+src\modules\simulation_module.py:248:4: R0914: Too many local variables (16/15) (too-many-locals)
+src\modules\simulation_module.py:253:8: C0415: Import outside toplevel (src.engine.arbitrage_engine.find_routes_with_filters) (import-outside-toplevel)
+src\modules\simulation_module.py:301:4: R0914: Too many local variables (16/15) (too-many-locals)
+src\modules\simulation_module.py:456:4: R0913: Too many arguments (6/5) (too-many-arguments)
+src\modules\simulation_module.py:456:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+src\modules\simulation_module.py:566:15: W0718: Catching too general exception Exception (broad-exception-caught)
+src\modules\simulation_module.py:568:12: C0415: Import outside toplevel (traceback) (import-outside-toplevel)
+src\modules\simulation_module.py:23:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+src\modules\simulation_module.py:15:0: W0611: Unused forex_rates imported from src.engine.arbitrage_engine (unused-import)
+src\modules\simulation_module.py:15:0: W0611: Unused markets imported from src.engine.arbitrage_engine (unused-import)
+************* Module src.utils.route_params_collector
+src\utils\route_params_collector.py:30:0: C0301: Line too long (106/100) (line-too-long)
+src\utils\route_params_collector.py:103:0: C0301: Line too long (106/100) (line-too-long)
+src\utils\route_params_collector.py:108:0: C0301: Line too long (105/100) (line-too-long)
+src\utils\route_params_collector.py:110:0: C0301: Line too long (125/100) (line-too-long)
+src\utils\route_params_collector.py:121:0: C0301: Line too long (124/100) (line-too-long)
+src\utils\route_params_collector.py:211:0: C0301: Line too long (126/100) (line-too-long)
+src\utils\route_params_collector.py:249:0: C0305: Trailing newlines (trailing-newlines)
+src\utils\route_params_collector.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src\utils\route_params_collector.py:17:16: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+src\utils\route_params_collector.py:145:9: R1714: Consider merging these comparisons with 'in' by using 'method_choice_lower in ('1', 'forex')'. Use a set instead if elements are hashable. (consider-using-in)
+src\utils\route_params_collector.py:147:9: R1714: Consider merging these comparisons with 'in' by using 'method_choice_lower in ('2', 'bank')'. Use a set instead if elements are hashable. (consider-using-in)
+src\utils\route_params_collector.py:49:0: R0911: Too many return statements (7/6) (too-many-return-statements)
+src\utils\route_params_collector.py:49:0: R0912: Too many branches (14/12) (too-many-branches)
+src\utils\route_params_collector.py:168:4: C0415: Import outside toplevel (rich.panel.Panel) (import-outside-toplevel)
+src\utils\route_params_collector.py:193:19: R0124: Redundant comparison - num != num (comparison-with-itself)
+src\utils\route_params_collector.py:217:19: R0124: Redundant comparison - result != result (comparison-with-itself)
+************* Module tests.conftest
+tests\conftest.py:26:0: C0301: Line too long (107/100) (line-too-long)
+tests\conftest.py:27:0: C0301: Line too long (109/100) (line-too-long)
+tests\conftest.py:51:0: C0301: Line too long (107/100) (line-too-long)
+tests\conftest.py:52:0: C0301: Line too long (109/100) (line-too-long)
+tests\conftest.py:64:0: C0301: Line too long (107/100) (line-too-long)
+tests\conftest.py:65:0: C0301: Line too long (109/100) (line-too-long)
+tests\conftest.py:273:0: C0305: Trailing newlines (trailing-newlines)
+tests\conftest.py:83:17: W0621: Redefining name 'mock_config_valid' from outer scope (line 13) (redefined-outer-name)
+tests\conftest.py:89:21: W0621: Redefining name 'mock_config_valid' from outer scope (line 13) (redefined-outer-name)
+tests\conftest.py:111:31: W0621: Redefining name 'mock_config_valid' from outer scope (line 13) (redefined-outer-name)
+tests\conftest.py:136:19: W0613: Unused argument 'prompt' (unused-argument)
+tests\conftest.py:143:4: C0115: Missing class docstring (missing-class-docstring)
+tests\conftest.py:144:8: C0116: Missing function or method docstring (missing-function-docstring)
+tests\conftest.py:143:4: R0903: Too few public methods (1/2) (too-few-public-methods)
+tests\conftest.py:156:17: W0613: Unused argument 'prompt' (unused-argument)
+tests\conftest.py:162:4: C0115: Missing class docstring (missing-class-docstring)
+tests\conftest.py:164:8: C0116: Missing function or method docstring (missing-function-docstring)
+tests\conftest.py:162:4: R0903: Too few public methods (1/2) (too-few-public-methods)
+tests\conftest.py:169:4: C0115: Missing class docstring (missing-class-docstring)
+tests\conftest.py:170:8: C0116: Missing function or method docstring (missing-function-docstring)
+tests\conftest.py:169:4: R0903: Too few public methods (1/2) (too-few-public-methods)
+tests\conftest.py:222:34: W0613: Unused argument 'config' (unused-argument)
+tests\conftest.py:259:10: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+tests\conftest.py:235:46: W0613: Unused argument 'exitstatus' (unused-argument)
+tests\conftest.py:235:58: W0613: Unused argument 'config' (unused-argument)
+tests\conftest.py:6:0: W0611: Unused MagicMock imported from unittest.mock (unused-import)
+************* Module tests.run_all_tests
+tests\run_all_tests.py:67:0: C0305: Trailing newlines (trailing-newlines)
+tests\run_all_tests.py:53:13: W1510: 'subprocess.run' used without explicitly defining the value for 'check'. (subprocess-run-check)
+************* Module tests.advanced.test_edge_cases
+tests\advanced\test_edge_cases.py:227:0: C0305: Trailing newlines (trailing-newlines)
+tests\advanced\test_edge_cases.py:17:48: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\advanced\test_edge_cases.py:17:62: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\advanced\test_edge_cases.py:27:53: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\advanced\test_edge_cases.py:27:67: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\advanced\test_edge_cases.py:81:8: W0107: Unnecessary pass statement (unnecessary-pass)
+tests\advanced\test_edge_cases.py:70:38: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\advanced\test_edge_cases.py:72:8: W0612: Unused variable 'invalid_markets' (unused-variable)
+tests\advanced\test_edge_cases.py:114:8: W0612: Unused variable 'warnings' (unused-variable)
+tests\advanced\test_edge_cases.py:127:8: W0107: Unnecessary pass statement (unnecessary-pass)
+tests\advanced\test_edge_cases.py:119:8: W0612: Unused variable 'invalid_markets' (unused-variable)
+tests\advanced\test_edge_cases.py:150:8: C0415: Import outside toplevel (src.engine.arbitrage_engine.validate_market_data) (import-outside-toplevel)
+tests\advanced\test_edge_cases.py:160:38: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\advanced\test_edge_cases.py:160:52: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\advanced\test_edge_cases.py:173:38: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\advanced\test_edge_cases.py:173:52: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\advanced\test_edge_cases.py:225:8: W0612: Unused variable 'errors' (unused-variable)
+************* Module tests.integration.test_full_rotation_flow
+tests\integration\test_full_rotation_flow.py:173:0: C0305: Trailing newlines (trailing-newlines)
+tests\integration\test_full_rotation_flow.py:18:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\integration\test_full_rotation_flow.py:48:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\integration\test_full_rotation_flow.py:73:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\integration\test_full_rotation_flow.py:99:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\integration\test_full_rotation_flow.py:113:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\integration\test_full_rotation_flow.py:132:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\integration\test_full_rotation_flow.py:151:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\integration\test_full_rotation_flow.py:4:0: W0611: Unused import json (unused-import)
+tests\integration\test_full_rotation_flow.py:5:0: W0611: Unused Path imported from pathlib (unused-import)
+tests\integration\test_full_rotation_flow.py:7:0: W0611: Unused import pytest (unused-import)
+************* Module tests.integration.test_simulation_workflow
+tests\integration\test_simulation_workflow.py:18:0: C0301: Line too long (120/100) (line-too-long)
+tests\integration\test_simulation_workflow.py:23:0: C0301: Line too long (129/100) (line-too-long)
+tests\integration\test_simulation_workflow.py:165:0: C0305: Trailing newlines (trailing-newlines)
+tests\integration\test_simulation_workflow.py:18:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\integration\test_simulation_workflow.py:18:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\integration\test_simulation_workflow.py:38:8: C0415: Import outside toplevel (src.modules.simulation_module) (import-outside-toplevel)
+tests\integration\test_simulation_workflow.py:64:8: W0621: Redefining name 'SimulationEngine' from outer scope (line 10) (redefined-outer-name)
+tests\integration\test_simulation_workflow.py:64:8: W0404: Reimport 'SimulationEngine' (imported line 10) (reimported)
+tests\integration\test_simulation_workflow.py:64:8: C0415: Import outside toplevel (src.modules.simulation_module.SimulationEngine) (import-outside-toplevel)
+tests\integration\test_simulation_workflow.py:61:42: W0613: Unused argument 'mock_config_valid' (unused-argument)
+tests\integration\test_simulation_workflow.py:66:8: W0612: Unused variable 'engine' (unused-variable)
+tests\integration\test_simulation_workflow.py:69:8: W0612: Unused variable 'params' (unused-variable)
+tests\integration\test_simulation_workflow.py:78:8: W0612: Unused variable 'mock_route' (unused-variable)
+tests\integration\test_simulation_workflow.py:96:8: W0621: Redefining name 'SimulationEngine' from outer scope (line 10) (redefined-outer-name)
+tests\integration\test_simulation_workflow.py:96:8: W0404: Reimport 'SimulationEngine' (imported line 10) (reimported)
+tests\integration\test_simulation_workflow.py:96:8: C0415: Import outside toplevel (src.modules.simulation_module.SimulationEngine) (import-outside-toplevel)
+tests\integration\test_simulation_workflow.py:105:23: W0212: Access to a protected member _convert_to_usdt of a client class (protected-access)
+tests\integration\test_simulation_workflow.py:94:56: W0613: Unused argument 'mock_config_valid' (unused-argument)
+tests\integration\test_simulation_workflow.py:113:8: W0621: Redefining name 'SimulationEngine' from outer scope (line 10) (redefined-outer-name)
+tests\integration\test_simulation_workflow.py:113:8: W0404: Reimport 'SimulationEngine' (imported line 10) (reimported)
+tests\integration\test_simulation_workflow.py:113:8: C0415: Import outside toplevel (src.modules.simulation_module.SimulationEngine) (import-outside-toplevel)
+tests\integration\test_simulation_workflow.py:111:47: W0613: Unused argument 'mock_config_valid' (unused-argument)
+tests\integration\test_simulation_workflow.py:115:8: W0612: Unused variable 'engine' (unused-variable)
+tests\integration\test_simulation_workflow.py:142:8: W0621: Redefining name 'SimulationEngine' from outer scope (line 10) (redefined-outer-name)
+tests\integration\test_simulation_workflow.py:142:8: W0404: Reimport 'SimulationEngine' (imported line 10) (reimported)
+tests\integration\test_simulation_workflow.py:142:8: C0415: Import outside toplevel (src.modules.simulation_module.SimulationEngine) (import-outside-toplevel)
+tests\integration\test_simulation_workflow.py:140:68: W0613: Unused argument 'mock_config_valid' (unused-argument)
+tests\integration\test_simulation_workflow.py:157:8: W0621: Redefining name 'SimulationEngine' from outer scope (line 10) (redefined-outer-name)
+tests\integration\test_simulation_workflow.py:157:8: W0404: Reimport 'SimulationEngine' (imported line 10) (reimported)
+tests\integration\test_simulation_workflow.py:157:8: C0415: Import outside toplevel (src.modules.simulation_module.SimulationEngine) (import-outside-toplevel)
+tests\integration\test_simulation_workflow.py:155:51: W0613: Unused argument 'mock_config_valid' (unused-argument)
+tests\integration\test_simulation_workflow.py:4:0: W0611: Unused import json (unused-import)
+tests\integration\test_simulation_workflow.py:6:0: W0611: Unused MagicMock imported from unittest.mock (unused-import)
+tests\integration\test_simulation_workflow.py:8:0: W0611: Unused import pytest (unused-import)
+************* Module tests.unit.test_arbitrage_engine
+tests\unit\test_arbitrage_engine.py:182:0: C0301: Line too long (104/100) (line-too-long)
+tests\unit\test_arbitrage_engine.py:253:0: C0305: Trailing newlines (trailing-newlines)
+tests\unit\test_arbitrage_engine.py:16:43: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\unit\test_arbitrage_engine.py:16:57: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\unit\test_arbitrage_engine.py:33:51: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\unit\test_arbitrage_engine.py:33:65: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\unit\test_arbitrage_engine.py:47:52: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\unit\test_arbitrage_engine.py:47:66: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\unit\test_arbitrage_engine.py:55:52: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\unit\test_arbitrage_engine.py:55:66: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\unit\test_arbitrage_engine.py:60:47: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\unit\test_arbitrage_engine.py:60:61: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\unit\test_arbitrage_engine.py:65:50: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\unit\test_arbitrage_engine.py:65:64: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\unit\test_arbitrage_engine.py:76:41: W0613: Unused argument 'mock_markets' (unused-argument)
+tests\unit\test_arbitrage_engine.py:76:55: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+tests\unit\test_arbitrage_engine.py:98:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\unit\test_arbitrage_engine.py:114:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\unit\test_arbitrage_engine.py:130:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\unit\test_arbitrage_engine.py:147:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\unit\test_arbitrage_engine.py:164:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+tests\unit\test_arbitrage_engine.py:178:8: C0415: Import outside toplevel (src.engine.arbitrage_engine) (import-outside-toplevel)
+************* Module tests.unit.test_forex_conversion
+tests\unit\test_forex_conversion.py:214:0: C0305: Trailing newlines (trailing-newlines)
+tests\unit\test_forex_conversion.py:132:8: W0612: Unused variable 'rate_forex' (unused-variable)
+tests\unit\test_forex_conversion.py:144:39: W0613: Unused argument 'mock_forex_rates' (unused-argument)
+************* Module tests.unit.test_rotation_manager
+tests\unit\test_rotation_manager.py:183:0: C0305: Trailing newlines (trailing-newlines)
+tests\unit\test_rotation_manager.py:102:8: W0612: Unused variable 'manager' (unused-variable)
+tests\unit\test_rotation_manager.py:165:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+tests\unit\test_rotation_manager.py:6:0: W0611: Unused Path imported from pathlib (unused-import)
+tests\unit\test_rotation_manager.py:8:0: W0611: Unused import pytest (unused-import)
+************* Module tests.unit.test_route_params_collector
+tests\unit\test_route_params_collector.py:17:0: C0301: Line too long (142/100) (line-too-long)
+tests\unit\test_route_params_collector.py:28:0: C0301: Line too long (116/100) (line-too-long)
+tests\unit\test_route_params_collector.py:49:0: C0301: Line too long (115/100) (line-too-long)
+tests\unit\test_route_params_collector.py:64:0: C0301: Line too long (118/100) (line-too-long)
+tests\unit\test_route_params_collector.py:69:0: C0301: Line too long (106/100) (line-too-long)
+tests\unit\test_route_params_collector.py:80:0: C0301: Line too long (116/100) (line-too-long)
+tests\unit\test_route_params_collector.py:95:0: C0301: Line too long (115/100) (line-too-long)
+tests\unit\test_route_params_collector.py:113:0: C0301: Line too long (111/100) (line-too-long)
+tests\unit\test_route_params_collector.py:116:0: C0301: Line too long (104/100) (line-too-long)
+tests\unit\test_route_params_collector.py:128:0: C0301: Line too long (105/100) (line-too-long)
+tests\unit\test_route_params_collector.py:135:0: C0301: Line too long (108/100) (line-too-long)
+tests\unit\test_route_params_collector.py:162:0: C0301: Line too long (116/100) (line-too-long)
+tests\unit\test_route_params_collector.py:179:0: C0301: Line too long (118/100) (line-too-long)
+tests\unit\test_route_params_collector.py:196:0: C0301: Line too long (121/100) (line-too-long)
+tests\unit\test_route_params_collector.py:197:0: C0301: Line too long (101/100) (line-too-long)
+tests\unit\test_route_params_collector.py:212:0: C0301: Line too long (115/100) (line-too-long)
+tests\unit\test_route_params_collector.py:228:0: C0301: Line too long (120/100) (line-too-long)
+tests\unit\test_route_params_collector.py:244:0: C0301: Line too long (116/100) (line-too-long)
+tests\unit\test_route_params_collector.py:260:0: C0301: Line too long (111/100) (line-too-long)
+tests\unit\test_route_params_collector.py:265:0: C0301: Line too long (103/100) (line-too-long)
+tests\unit\test_route_params_collector.py:276:0: C0301: Line too long (109/100) (line-too-long)
+tests\unit\test_route_params_collector.py:292:0: C0301: Line too long (114/100) (line-too-long)
+tests\unit\test_route_params_collector.py:304:0: C0305: Trailing newlines (trailing-newlines)
+tests\unit\test_route_params_collector.py:28:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:28:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:28:45: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:49:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:49:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:49:44: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:64:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:64:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:64:47: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:80:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:80:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:80:45: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:95:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:95:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:95:44: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:113:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:113:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:113:40: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:135:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:135:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:135:37: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:162:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:162:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:162:45: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:179:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:179:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:179:47: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:196:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:196:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:196:50: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:212:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:212:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:212:44: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:228:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:228:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:228:49: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:244:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:244:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:244:45: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:260:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:260:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:260:40: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:276:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:276:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:276:38: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:292:4: R0913: Too many arguments (6/5) (too-many-arguments)
+tests\unit\test_route_params_collector.py:292:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+tests\unit\test_route_params_collector.py:292:43: W0613: Unused argument 'mock_print' (unused-argument)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.modules.simulation_module:[68:96]
+==src.utils.route_params_collector:[201:225]
+                prompt + " (tapez 'annuler' pour quitter) : ",
+                is_valid_number,
+                f"Nombre invalide (min: {min_val}, max: 1,000,000) ou valeur vide"
+            )
+            if value_str is None:
+                return None
+
+            # Vérification valeur vide explicite
+            if not value_str or value_str.strip() == '':
+                console.print("[bold red]Vous n'avez entré aucune valeur. Veuillez entrer un nombre ou 'annuler'.[/bold red]")
+                continue
+
+            try:
+                result = input_type(value_str.replace(',', '.'))
+                # Double vérification post-conversion
+                if result != result or result == float('inf') or result == float('-inf'):
+                    console.print("[bold red]Valeur invalide (NaN/Infini détecté)[/bold red]")
+                    continue
+                return result
+            except (ValueError, OverflowError):
+                console.print("[bold red]Erreur de conversion numérique[/bold red]")
+                continue
+
+    # Capital initial (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.modules.simulation_module:[46:67]
+==src.utils.route_params_collector:[178:200]
+                return None
+
+    def _get_numeric_input(self, prompt, input_type=float, min_val=0):
+        """Saisie numérique ultra-sécurisée (copie de daily_briefing_bis)"""
+        def is_valid_number(v):
+            try:
+                # Gestion valeur vide
+
+                if not v or v.strip() == '':
+                    return False
+                num = input_type(v.replace(',', '.'))
+                if input_type == float and (num < min_val or num > 1000000):
+                    return False
+                # Vérification NaN et infini
+                if num != num or num == float('inf') or num == float('-inf'):  # pylint: disable=comparison-with-itself
+                    return False
+                return num >= min_val
+            except (ValueError, OverflowError):
+                return False
+
+        while True: (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.cli.daily_briefing:[95:107]
+==src.modules.simulation_module:[80:96]
+            try:
+                result = input_type(value_str.replace(',', '.'))
+                # Double vérification post-conversion
+                if result != result or result == float('inf') or result == float('-inf'):  # pylint: disable=comparison-with-itself
+                    console.print("[bold red]Valeur invalide (NaN/Infini détecté)[/bold red]")
+                    continue
+                return result
+            except (ValueError, OverflowError):
+                console.print("[bold red]Erreur de conversion numérique[/bold red]")
+                continue
+
+    def _load_config(self):
+        """Charge la configuration"""
+        from pathlib import Path
+
+        # Remonter 3 niveaux : simulation_module.py -> modules/ -> src/ -> projet/ (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.cli.daily_briefing:[77:88]
+==src.modules.simulation_module:[56:67]
+                num = input_type(v.replace(',', '.'))
+                if input_type == float and (num < min_val or num > 1000000):
+                    return False
+                # Vérification NaN et infini
+                if num != num or num == float('inf') or num == float('-inf'):  # pylint: disable=comparison-with-itself
+                    return False
+                return num >= min_val
+            except (ValueError, OverflowError):
+                return False
+
+        while True: (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.modules.simulation_module:[171:181]
+==src.utils.route_params_collector:[81:91]
+            f"Monnaie de bouclage (options: {'/'.join(available_currencies)}) : ",
+            lambda x: x.upper() in available_currencies,
+            f"Devise invalide. Choix : {', '.join(available_currencies)}"
+        )
+        if loop_currency is None:
+            return None
+        loop_currency = loop_currency.upper()
+
+    # 3. Marchés exclus
+    console.print("\n[yellow]Exclusion de marchés[/yellow]") (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.modules.simulation_module:[161:170]
+==src.utils.route_params_collector:[71:80]
+        "Voulez-vous forcer une monnaie de bouclage ? (o/n) : ",
+        lambda x: x.lower() in ['o', 'n'],
+        "Répondez 'o' ou 'n'"
+    )
+    if use_loop is None:
+        return None
+
+    loop_currency = None
+    if use_loop.lower() == 'o': (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==tests.advanced.test_edge_cases:[58:71]
+==tests.unit.test_forex_conversion:[187:200]
+        invalid_rates = {
+            "XAF/EUR": {
+                "bid": 0.0,
+                "ask": 660.0,
+                "bank_spread_pct": 1.5
+            }
+        }
+
+        with pytest.raises((ValueError, ZeroDivisionError)):
+            get_forex_rate("XAF", "EUR", invalid_rates, "forex")
+
+    def test_extreme_spread(self):
+        """Spread > 100% devrait fonctionner (même si illogique)""" (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.modules.simulation_module:[134:143]
+==src.utils.route_params_collector:[60:69]
+            f"Monnaie de sourcing (options: {'/'.join(available_currencies)}) : ",
+            lambda x: x.upper() in available_currencies,
+            f"Devise invalide. Choix : {', '.join(available_currencies)}"
+        )
+        if sourcing_currency is None:
+            return None
+        sourcing_currency = sourcing_currency.upper()
+
+        # 2. Capital initial (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.modules.simulation_module:[38:45]
+==src.utils.route_params_collector:[17:24]
+                        return None
+                    else:
+                        continue
+                if validation_func is None or validation_func(value):
+                    return value
+                console.print(f"[bold red]{error_msg}[/bold red]")
+            except KeyboardInterrupt: (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.modules.simulation_module:[182:189]
+==src.utils.route_params_collector:[92:99]
+        "Voulez-vous exclure certains marchés comme marché de VENTE ? (o/n) : ",
+        lambda x: x.lower() in ['o', 'n'],
+        "Répondez 'o' ou 'n'"
+    )
+    if use_exclusion is None:
+        return None
+ (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==src.cli.daily_briefing:[63:71]
+==src.modules.simulation_module:[38:44]
+                return None
+            else:
+                continue
+        if validation_func is None or validation_func(value):
+            return value
+        console.print(f"[bold red]{error_msg}[/bold red]")
+
+def get_choice_input(prompt, choices): (duplicate-code)
+tests\unit\test_route_params_collector.py:1:0: R0801: Similar lines in 2 files
+==tests.integration.test_full_rotation_flow:[48:54]
+==tests.unit.test_arbitrage_engine:[98:104]
+        arbitrage_engine.markets = mock_config_valid['markets']
+        arbitrage_engine.forex_rates = mock_config_valid['forex_rates']
+
+        routes = find_routes_with_filters(
+            top_n=10,
+            sourcing_currency='EUR', (duplicate-code)
+
+------------------------------------------------------------------
+Your code has been rated at 7.38/10 (previous run: 7.71/10, -0.33)
+

@@ -20,6 +20,7 @@ except (FileNotFoundError, KeyError) as e:
 
 # --- FONCTIONS UTILITAIRES ---
 def validate_config_coherence(markets, forex_rates):
+
     """Valide la cohérence des taux de change et prix de marché"""
     alerts = []
     # ========== VALIDATION PRIX NÉGATIFS ==========

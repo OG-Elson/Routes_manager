@@ -1,6 +1,51 @@
 markdown# Routes Manager - Système d'Arbitrage P2P Crypto
 
 Plateforme intelligente de gestion et d'optimisation de rotations d'arbitrage P2P avec support multi-devises et simulations avancées.
+![Langage principal : Python](https://img.shields.io/github/languages/top/OG-Elson/Routes_manager)
+![License : MIT](https://img.shields.io/github/license/OG-Elson/Routes_manager)
+
+---
+
+## 🎯 Proposition de Valeur
+
+Ce projet est un moteur d'analyse et de simulation pour détecter les **opportunités d'arbitrage P2P** les plus rentables entre différentes plateformes et devises.
+
+Développé en **Python**, il utilise des algorithmes de recherche de graphe (similaire à l'algorithme de Bellman-Ford ou Dijkstra, adapté au contexte des routes de conversion) pour identifier la séquence d'échanges optimale qui maximise le profit.
+
+### ❓ Problématique Client
+L'identification manuelle des opportunités d'arbitrage est chronophage, sujette aux erreurs de calcul (surtout avec la complexité des spreads) et ne permet pas d'optimiser le cycle complet.
+
+### ✅ Solution
+Routes Manager automatise la détection de routes, intègre une gestion rigoureuse des taux de change (Forex, Spreads bancaires) et simule des cycles de transactions complets pour fournir une mesure de rentabilité **nette et fiable**.
+
+---
+
+## ✨ Fonctionnalités Clés
+
+La force du projet réside dans sa capacité à modéliser la complexité financière et à fournir une interface utilisateur claire via `rich`.
+
+| Fonctionnalité | Description | Compétence Démontrée |
+| :--- | :--- | :--- |
+| **Recherche Optimale** | Identification des chemins de transaction les plus courts et les plus rentables pour boucler sur une devise source. |
+| **Moteur de Taux Avancé** | Gestion précise des taux de change via **Bid/Ask** pour les taux de marché et intégration des **spreads** pour les conversions bancaires. | **Finance / Traitement de Données Critiques** |
+| **Validation des Données** | Validation stricte des configurations (cohérence des spreads, taux négatifs ou nuls) pour garantir la fiabilité du calcul. | **Robustesse / Code Safety** |
+| **Interface CLI Rich** | Expérience utilisateur améliorée avec des tableaux formatés et une saisie utilisateur robuste. | **Développement CLI Python Professionnel** |
+| **Tests Unitaires** | Couverture complète des cas limites (extrême spread, formats de taux, NaN/Infinity) avec `pytest`. | **Qualité de Code et Maintenabilité** | devise de sourcing, exclusions, bouclage, méthode de conversion | **Filtres avancés** | test de rotations sans risque réel| **Mode simulation**| bouclage automatique sur devise choisie | **Gestion de cycles** | rapports détaillés de performance | **Analyse KPI** | détection d'incohérences dans la configuration | **Validation robuste** | **Interface CLI interactive** | avec Rich
+
+
+---
+
+## 🛠️ Stack Technique
+
+* **Langage :** Python 3.10+
+* **Librairies Principales :**
+    * `rich` : Pour l'interface en ligne de commande (CLI) riche et l'affichage des résultats.
+    * `pytest` : Pour la suite de tests unitaires et la validation des logiques complexes.
+* **Architecture :** Modulaire (Engine, Utils, Modules), permettant une maintenance et une évolution faciles.
+
+---
+
+
 
 ## 📋 Table des matières
 
@@ -20,12 +65,7 @@ Plateforme intelligente de gestion et d'optimisation de rotations d'arbitrage P2
 
 - **Calcul automatique des routes optimales** avec analyse de profitabilité
 - **Support double méthode de conversion** : Forex (bid/ask) ou Banque (spread additionnel)
-- **Filtres avancés** : devise de sourcing, exclusions, bouclage, méthode de conversion
-- **Mode simulation** : test de rotations sans risque réel
-- **Gestion de cycles** : bouclage automatique sur devise choisie
-- **Analyse KPI** : rapports détaillés de performance
-- **Validation robuste** : détection d'incohérences dans la configuration
-- **Interface CLI interactive** avec Rich
+
 
 ---
 
