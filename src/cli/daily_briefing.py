@@ -194,7 +194,7 @@ def robust_csv_append(filename, data_dict, max_retries=3):
                     return False
 
                 try:
-                    with open(filename, 'a', encoding='utf-8') as test_file:
+                    with open(filename, 'a', encoding='utf-8'):
                         break
                 except PermissionError:
                     if retry == 2:

@@ -229,7 +229,7 @@ def generate_force_scenarios():
 def generate_edge_scenarios():
     """Génère les scénarios de cas limites"""
     scenarios = []
-    test_id = 1
+
 
     # Scénario 1 : Capital minimum
     transactions, final_capital = calculate_transaction_amounts(200, 0.05, 1)

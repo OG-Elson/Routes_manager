@@ -1,21 +1,14 @@
 # modules/simulation_module.py
 
 import json
-import os
-import sys
 from datetime import datetime
 from pathlib import Path
 
-# Configuration chemin
-"""current_file = os.path.abspath(__file__)
-modules_dir = os.path.dirname(current_file)
-project_root = os.path.dirname(modules_dir)
-os.chdir(project_root)
-sys.path.insert(0, project_root)"""
+
 
 from rich.console import Console
 from rich.panel import Panel
-from rich.prompt import Confirm, FloatPrompt, IntPrompt, Prompt
+from rich.prompt import Confirm
 from rich.table import Table
 
 from src.cli.daily_briefing import generate_new_rotation_id, robust_csv_append
@@ -329,7 +322,7 @@ class SimulationEngine:
                 sourcing = best_route['sourcing_market_code']
             else:
                 sourcing = params['loop_currency'] or 'EUR'
-                use_dc = False
+
 
             selling = best_route['selling_market_code']
 
