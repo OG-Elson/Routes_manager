@@ -61,14 +61,14 @@ def calculate_transaction_amounts(capital_eur, expected_margin, nb_cycles=1):
 
 
     # Appliquer la marge attendue au capital final
-    final_capital = capital_eur * (1 + expected_margin)
+    _final_capital = capital_eur * (1 + expected_margin)
 
     return transactions, final_capital
 
 def generate_standard_scenarios():
     """Génère les scénarios de tests standards"""
     scenarios = []
-    test_id = 1
+    _test_id = 1
 
     capitals = [500, 1000, 2000, 5000]
     margins = [0.02, 0.05, 0.08]  # 2%, 5%, 8%
@@ -77,7 +77,7 @@ def generate_standard_scenarios():
     for capital in capitals:
         for margin in margins:
             for nb_cycles in cycles_list:
-                transactions, final_capital = calculate_transaction_amounts(capital, margin, nb_cycles)
+                transactions, _final_capital = calculate_transaction_amounts(capital, margin, nb_cycles)
 
                 # Nombre de transactions = 3 par cycle + 1 clôture
                 expected_tx_count = (nb_cycles * 3) + 1
@@ -112,7 +112,7 @@ def generate_standard_scenarios():
 def generate_loop_scenarios():
     """Génère les scénarios avec bouclage"""
     scenarios = []
-    test_id = 1
+    _test_id = 1
 
     loop_configs = [
         {'currency': 'EUR', 'loops': 2},
@@ -128,7 +128,7 @@ def generate_loop_scenarios():
         nb_loops = config['loops']
         loop_currency = config['currency']
 
-        transactions, final_capital = calculate_transaction_amounts(capital, margin, nb_loops)
+        transactions, _final_capital = calculate_transaction_amounts(capital, margin, nb_loops)
 
         expected_tx_count = (nb_loops * 3) + 1
         expected_sequence = []
@@ -232,7 +232,7 @@ def generate_edge_scenarios():
 
 
     # Scénario 1 : Capital minimum
-    transactions, final_capital = calculate_transaction_amounts(200, 0.05, 1)
+    transactions, _final_capital = calculate_transaction_amounts(200, 0.05, 1)
     scenarios.append({
         'id': 'EDGE_001',
         'name': 'Capital minimum - 200€',
@@ -250,7 +250,7 @@ def generate_edge_scenarios():
     })
 
     # Scénario 2 : Capital élevé
-    transactions, final_capital = calculate_transaction_amounts(50000, 0.03, 1)
+    transactions, _final_capital = calculate_transaction_amounts(50000, 0.03, 1)
     scenarios.append({
         'id': 'EDGE_002',
         'name': 'Capital élevé - 50,000€',
@@ -271,7 +271,7 @@ def generate_edge_scenarios():
     capital = 1000
     loss_margin = -0.02
     transactions, _ = calculate_transaction_amounts(capital, 0.05, 1)
-    final_capital = capital * (1 + loss_margin)
+    _final_capital = capital * (1 + loss_margin)
 
     scenarios.append({
         'id': 'EDGE_003',
@@ -293,7 +293,7 @@ def generate_edge_scenarios():
     test_capitals = range(1400, 3100, 100)
     for idx, cap in enumerate(test_capitals, start=4):
         margin = 0.03 + (idx % 5) * 0.005  # Marges variables
-        transactions, final_capital = calculate_transaction_amounts(cap, margin, 1)
+        transactions, _final_capital = calculate_transaction_amounts(cap, margin, 1)
 
         scenarios.append({
             'id': f'EDGE_{idx:03d}',

@@ -30,6 +30,8 @@ test_reports/
 test_output/
 simulations/
 simulations_backup*/
+htmlcov/  # ← Ajouté (rapports coverage)
+.coverage  # ← Ajouté
 
 # IDE
 .vscode/
@@ -42,3 +44,4 @@ Thumbs.db
 
 
 cleanup_whitespace.pyc
+#fin
