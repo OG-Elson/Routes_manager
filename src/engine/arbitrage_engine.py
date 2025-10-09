@@ -162,7 +162,7 @@ def safe_divide(numerator, denominator, default=0):
         return default
     try:
         result = numerator / denominator
-        if not isinstance(result, (int, float)) or result != result:  # Check for NaN
+        if not isinstance(result, (int, float)) or result != result:  # Check for NaN  # pylint: disable=comparison-with-itself
             logging.warning(f"Résultat de division invalide: {numerator}/{denominator} = {result}")
             return default
         return result

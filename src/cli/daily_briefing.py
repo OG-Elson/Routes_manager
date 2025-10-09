@@ -79,7 +79,7 @@ def get_numeric_input_safe(prompt, input_type=float, min_val=0):
             if input_type == float and (num < min_val or num > 1000000):
                 return False
             # Vérification NaN et infini
-            if num != num or num == float('inf') or num == float('-inf'):
+            if num != num or num == float('inf') or num == float('-inf'):  # pylint: disable=comparison-with-itself
                 return False
             return num >= min_val
         except (ValueError, OverflowError):
@@ -96,7 +96,7 @@ def get_numeric_input_safe(prompt, input_type=float, min_val=0):
         try:
             result = input_type(value_str.replace(',', '.'))
             # Double vérification post-conversion
-            if result != result or result == float('inf') or result == float('-inf'):
+            if result != result or result == float('inf') or result == float('-inf'):  # pylint: disable=comparison-with-itself
                 console.print("[bold red]Valeur invalide (NaN/Infini détecté)[/bold red]")
                 continue
             return result

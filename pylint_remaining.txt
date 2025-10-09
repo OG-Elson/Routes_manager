@@ -23,7 +23,6 @@ src\analysis\kpi_analyzer.py:406:0: C0301: Line too long (102/100) (line-too-lon
 src\analysis\kpi_analyzer.py:490:0: C0301: Line too long (134/100) (line-too-long)
 src\analysis\kpi_analyzer.py:497:0: C0301: Line too long (105/100) (line-too-long)
 src\analysis\kpi_analyzer.py:498:0: C0301: Line too long (103/100) (line-too-long)
-src\analysis\kpi_analyzer.py:510:0: C0305: Trailing newlines (trailing-newlines)
 src\analysis\kpi_analyzer.py:68:0: R0914: Too many local variables (19/15) (too-many-locals)
 src\analysis\kpi_analyzer.py:136:11: W0718: Catching too general exception Exception (broad-exception-caught)
 src\analysis\kpi_analyzer.py:82:12: W0702: No exception type(s) specified (bare-except)
@@ -101,7 +100,6 @@ src\cli\daily_briefing.py:795:0: C0301: Line too long (150/100) (line-too-long)
 src\cli\daily_briefing.py:866:0: C0301: Line too long (102/100) (line-too-long)
 src\cli\daily_briefing.py:907:0: C0301: Line too long (114/100) (line-too-long)
 src\cli\daily_briefing.py:908:0: C0301: Line too long (104/100) (line-too-long)
-src\cli\daily_briefing.py:930:0: C0305: Trailing newlines (trailing-newlines)
 src\cli\daily_briefing.py:44:4: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
 src\cli\daily_briefing.py:45:10: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
 src\cli\daily_briefing.py:48:4: R1722: Consider using 'sys.exit' instead (consider-using-sys-exit)
@@ -111,7 +109,7 @@ src\cli\daily_briefing.py:82:15: R0124: Redundant comparison - num != num (compa
 src\cli\daily_briefing.py:99:15: R0124: Redundant comparison - result != result (comparison-with-itself)
 src\cli\daily_briefing.py:111:39: C0321: More than one statement on a single line (multiple-statements)
 src\cli\daily_briefing.py:112:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
-src\cli\daily_briefing.py:122:0: R0914: Too many local variables (17/15) (too-many-locals)
+src\cli\daily_briefing.py:122:0: R0914: Too many local variables (16/15) (too-many-locals)
 src\cli\daily_briefing.py:143:62: W0621: Redefining name 'f' from outer scope (line 38) (redefined-outer-name)
 src\cli\daily_briefing.py:209:15: W0718: Catching too general exception Exception (broad-exception-caught)
 src\cli\daily_briefing.py:152:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
@@ -120,7 +118,6 @@ src\cli\daily_briefing.py:181:26: W1309: Using an f-string that does not have an
 src\cli\daily_briefing.py:210:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
 src\cli\daily_briefing.py:122:0: R0912: Too many branches (26/12) (too-many-branches)
 src\cli\daily_briefing.py:122:0: R0915: Too many statements (66/50) (too-many-statements)
-src\cli\daily_briefing.py:197:66: W0612: Unused variable 'test_file' (unused-variable)
 src\cli\daily_briefing.py:257:59: W0621: Redefining name 'f' from outer scope (line 38) (redefined-outer-name)
 src\cli\daily_briefing.py:280:11: W0718: Catching too general exception Exception (broad-exception-caught)
 src\cli\daily_briefing.py:260:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
@@ -212,7 +209,6 @@ src\engine\arbitrage_engine.py:543:0: C0301: Line too long (108/100) (line-too-l
 src\engine\arbitrage_engine.py:547:0: C0301: Line too long (107/100) (line-too-long)
 src\engine\arbitrage_engine.py:552:0: C0301: Line too long (103/100) (line-too-long)
 src\engine\arbitrage_engine.py:561:0: C0301: Line too long (101/100) (line-too-long)
-src\engine\arbitrage_engine.py:590:0: C0305: Trailing newlines (trailing-newlines)
 src\engine\arbitrage_engine.py:17:4: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
 src\engine\arbitrage_engine.py:18:4: R1722: Consider using 'sys.exit' instead (consider-using-sys-exit)
 src\engine\arbitrage_engine.py:22:0: R0914: Too many local variables (17/15) (too-many-locals)
@@ -333,7 +329,6 @@ src\engine\rotation_manager.py:128:0: W0311: Bad indentation. Found 16 spaces, e
 src\engine\rotation_manager.py:129:0: W0311: Bad indentation. Found 20 spaces, expected 16 (bad-indentation)
 src\engine\rotation_manager.py:131:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
 src\engine\rotation_manager.py:163:0: C0301: Line too long (104/100) (line-too-long)
-src\engine\rotation_manager.py:221:0: C0305: Trailing newlines (trailing-newlines)
 src\engine\rotation_manager.py:33:23: W0718: Catching too general exception Exception (broad-exception-caught)
 src\engine\rotation_manager.py:30:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
 src\engine\rotation_manager.py:34:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
@@ -358,70 +353,52 @@ src\engine\rotation_manager.py:181:16: W1203: Use lazy % formatting in logging f
 src\modules\scenario_generator.py:80:0: C0301: Line too long (103/100) (line-too-long)
 src\modules\scenario_generator.py:91:0: C0301: Line too long (108/100) (line-too-long)
 src\modules\scenario_generator.py:332:0: C0301: Line too long (101/100) (line-too-long)
-src\modules\scenario_generator.py:381:0: C0305: Trailing newlines (trailing-newlines)
 src\modules\scenario_generator.py:131:22: W0612: Unused variable 'final_capital' (unused-variable)
-src\modules\scenario_generator.py:232:4: W0612: Unused variable 'test_id' (unused-variable)
 src\modules\scenario_generator.py:322:9: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
 ************* Module src.modules.simulation_module
-src\modules\simulation_module.py:85:0: C0301: Line too long (126/100) (line-too-long)
-src\modules\simulation_module.py:139:0: C0301: Line too long (101/100) (line-too-long)
-src\modules\simulation_module.py:199:0: C0301: Line too long (102/100) (line-too-long)
-src\modules\simulation_module.py:200:0: C0301: Line too long (110/100) (line-too-long)
-src\modules\simulation_module.py:214:0: C0301: Line too long (133/100) (line-too-long)
-src\modules\simulation_module.py:255:0: C0301: Line too long (101/100) (line-too-long)
-src\modules\simulation_module.py:316:0: C0301: Line too long (145/100) (line-too-long)
-src\modules\simulation_module.py:323:0: C0301: Line too long (113/100) (line-too-long)
-src\modules\simulation_module.py:343:0: C0301: Line too long (119/100) (line-too-long)
-src\modules\simulation_module.py:346:0: C0301: Line too long (106/100) (line-too-long)
-src\modules\simulation_module.py:364:0: C0301: Line too long (104/100) (line-too-long)
-src\modules\simulation_module.py:450:0: C0301: Line too long (105/100) (line-too-long)
-src\modules\simulation_module.py:480:0: C0301: Line too long (117/100) (line-too-long)
+src\modules\simulation_module.py:78:0: C0301: Line too long (126/100) (line-too-long)
+src\modules\simulation_module.py:132:0: C0301: Line too long (101/100) (line-too-long)
+src\modules\simulation_module.py:192:0: C0301: Line too long (102/100) (line-too-long)
+src\modules\simulation_module.py:193:0: C0301: Line too long (110/100) (line-too-long)
+src\modules\simulation_module.py:207:0: C0301: Line too long (133/100) (line-too-long)
+src\modules\simulation_module.py:248:0: C0301: Line too long (101/100) (line-too-long)
+src\modules\simulation_module.py:309:0: C0301: Line too long (145/100) (line-too-long)
+src\modules\simulation_module.py:316:0: C0301: Line too long (113/100) (line-too-long)
+src\modules\simulation_module.py:336:0: C0301: Line too long (119/100) (line-too-long)
+src\modules\simulation_module.py:339:0: C0301: Line too long (106/100) (line-too-long)
+src\modules\simulation_module.py:357:0: C0301: Line too long (104/100) (line-too-long)
+src\modules\simulation_module.py:443:0: C0301: Line too long (105/100) (line-too-long)
+src\modules\simulation_module.py:473:0: C0301: Line too long (117/100) (line-too-long)
+src\modules\simulation_module.py:476:0: C0301: Line too long (108/100) (line-too-long)
+src\modules\simulation_module.py:477:0: C0301: Line too long (105/100) (line-too-long)
 src\modules\simulation_module.py:483:0: C0301: Line too long (108/100) (line-too-long)
-src\modules\simulation_module.py:484:0: C0301: Line too long (105/100) (line-too-long)
-src\modules\simulation_module.py:490:0: C0301: Line too long (108/100) (line-too-long)
-src\modules\simulation_module.py:543:0: C0301: Line too long (109/100) (line-too-long)
-src\modules\simulation_module.py:549:0: C0301: Line too long (104/100) (line-too-long)
-src\modules\simulation_module.py:562:0: C0301: Line too long (117/100) (line-too-long)
-src\modules\simulation_module.py:563:0: C0301: Line too long (108/100) (line-too-long)
-src\modules\simulation_module.py:586:0: C0301: Line too long (109/100) (line-too-long)
-src\modules\simulation_module.py:595:0: C0305: Trailing newlines (trailing-newlines)
-src\modules\simulation_module.py:10:0: W0105: String statement has no effect (pointless-string-statement)
-src\modules\simulation_module.py:16:0: C0413: Import "from rich.console import Console" should be placed at the top of the module (wrong-import-position)
-src\modules\simulation_module.py:17:0: C0413: Import "from rich.panel import Panel" should be placed at the top of the module (wrong-import-position)
-src\modules\simulation_module.py:18:0: C0413: Import "from rich.prompt import Confirm, FloatPrompt, IntPrompt, Prompt" should be placed at the top of the module (wrong-import-position)
-src\modules\simulation_module.py:19:0: C0413: Import "from rich.table import Table" should be placed at the top of the module (wrong-import-position)
-src\modules\simulation_module.py:21:0: C0413: Import "from src.cli.daily_briefing import generate_new_rotation_id, robust_csv_append" should be placed at the top of the module (wrong-import-position)
-src\modules\simulation_module.py:22:0: C0413: Import "from src.engine.arbitrage_engine import calculate_profit_route, forex_rates, markets" should be placed at the top of the module (wrong-import-position)
-src\modules\simulation_module.py:24:0: C0413: Import "from src.engine.rotation_manager import RotationManager" should be placed at the top of the module (wrong-import-position)
-src\modules\simulation_module.py:25:0: C0413: Import "from src.utils.route_params_collector import collect_simulation_parameters" should be placed at the top of the module (wrong-import-position)
-src\modules\simulation_module.py:45:20: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
-src\modules\simulation_module.py:68:19: R0124: Redundant comparison - num != num (comparison-with-itself)
-src\modules\simulation_module.py:91:19: R0124: Redundant comparison - result != result (comparison-with-itself)
-src\modules\simulation_module.py:101:8: W0621: Redefining name 'Path' from outer scope (line 7) (redefined-outer-name)
-src\modules\simulation_module.py:101:8: W0404: Reimport 'Path' (imported line 7) (reimported)
-src\modules\simulation_module.py:101:8: C0415: Import outside toplevel (pathlib.Path) (import-outside-toplevel)
-src\modules\simulation_module.py:129:4: R0911: Too many return statements (8/6) (too-many-return-statements)
-src\modules\simulation_module.py:242:16: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
-src\modules\simulation_module.py:255:4: R0914: Too many local variables (16/15) (too-many-locals)
-src\modules\simulation_module.py:260:8: C0415: Import outside toplevel (src.engine.arbitrage_engine.find_routes_with_filters) (import-outside-toplevel)
-src\modules\simulation_module.py:308:4: R0914: Too many local variables (17/15) (too-many-locals)
-src\modules\simulation_module.py:332:16: W0612: Unused variable 'use_dc' (unused-variable)
-src\modules\simulation_module.py:463:4: R0913: Too many arguments (6/5) (too-many-arguments)
-src\modules\simulation_module.py:463:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
-src\modules\simulation_module.py:573:15: W0718: Catching too general exception Exception (broad-exception-caught)
-src\modules\simulation_module.py:575:12: C0415: Import outside toplevel (traceback) (import-outside-toplevel)
-src\modules\simulation_module.py:30:0: R0903: Too few public methods (1/2) (too-few-public-methods)
-src\modules\simulation_module.py:4:0: W0611: Unused import os (unused-import)
-src\modules\simulation_module.py:5:0: W0611: Unused import sys (unused-import)
-src\modules\simulation_module.py:18:0: W0611: Unused FloatPrompt imported from rich.prompt (unused-import)
-src\modules\simulation_module.py:18:0: W0611: Unused IntPrompt imported from rich.prompt (unused-import)
-src\modules\simulation_module.py:18:0: W0611: Unused Prompt imported from rich.prompt (unused-import)
-src\modules\simulation_module.py:22:0: W0611: Unused forex_rates imported from src.engine.arbitrage_engine (unused-import)
-src\modules\simulation_module.py:22:0: W0611: Unused markets imported from src.engine.arbitrage_engine (unused-import)
+src\modules\simulation_module.py:536:0: C0301: Line too long (109/100) (line-too-long)
+src\modules\simulation_module.py:542:0: C0301: Line too long (104/100) (line-too-long)
+src\modules\simulation_module.py:555:0: C0301: Line too long (117/100) (line-too-long)
+src\modules\simulation_module.py:556:0: C0301: Line too long (108/100) (line-too-long)
+src\modules\simulation_module.py:579:0: C0301: Line too long (109/100) (line-too-long)
+src\modules\simulation_module.py:38:20: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+src\modules\simulation_module.py:61:19: R0124: Redundant comparison - num != num (comparison-with-itself)
+src\modules\simulation_module.py:84:19: R0124: Redundant comparison - result != result (comparison-with-itself)
+src\modules\simulation_module.py:94:8: W0621: Redefining name 'Path' from outer scope (line 5) (redefined-outer-name)
+src\modules\simulation_module.py:94:8: W0404: Reimport 'Path' (imported line 5) (reimported)
+src\modules\simulation_module.py:94:8: C0415: Import outside toplevel (pathlib.Path) (import-outside-toplevel)
+src\modules\simulation_module.py:122:4: R0911: Too many return statements (8/6) (too-many-return-statements)
+src\modules\simulation_module.py:235:16: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+src\modules\simulation_module.py:248:4: R0914: Too many local variables (16/15) (too-many-locals)
+src\modules\simulation_module.py:253:8: C0415: Import outside toplevel (src.engine.arbitrage_engine.find_routes_with_filters) (import-outside-toplevel)
+src\modules\simulation_module.py:301:4: R0914: Too many local variables (16/15) (too-many-locals)
+src\modules\simulation_module.py:456:4: R0913: Too many arguments (6/5) (too-many-arguments)
+src\modules\simulation_module.py:456:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+src\modules\simulation_module.py:566:15: W0718: Catching too general exception Exception (broad-exception-caught)
+src\modules\simulation_module.py:568:12: C0415: Import outside toplevel (traceback) (import-outside-toplevel)
+src\modules\simulation_module.py:23:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+src\modules\simulation_module.py:15:0: W0611: Unused forex_rates imported from src.engine.arbitrage_engine (unused-import)
+src\modules\simulation_module.py:15:0: W0611: Unused markets imported from src.engine.arbitrage_engine (unused-import)
 ************* Module src.modules.__init__
 src\modules\__init__.py:1:0: R0801: Similar lines in 2 files
 ==src.cli.daily_briefing:[95:107]
-==src.modules.simulation_module:[87:103]
+==src.modules.simulation_module:[80:96]
             try:
                 result = input_type(value_str.replace(',', '.'))
                 # Double vérification post-conversion
@@ -440,21 +417,21 @@ src\modules\__init__.py:1:0: R0801: Similar lines in 2 files
         # Remonter 3 niveaux : simulation_module.py -> modules/ -> src/ -> projet/ (duplicate-code)
 src\modules\__init__.py:1:0: R0801: Similar lines in 2 files
 ==src.cli.daily_briefing:[77:88]
-==src.modules.simulation_module:[63:74]
-                num = input_type(v.replace(',', '.'))
-                if input_type == float and (num < min_val or num > 1000000):
-                    return False
-                # Vérification NaN et infini
-                if num != num or num == float('inf') or num == float('-inf'):
-                    return False
-                return num >= min_val
-            except (ValueError, OverflowError):
+==src.modules.simulation_module:[56:67]
+            num = input_type(v.replace(',', '.'))
+            if input_type == float and (num < min_val or num > 1000000):
                 return False
+            # Vérification NaN et infini
+            if num != num or num == float('inf') or num == float('-inf'):
+                return False
+            return num >= min_val
+        except (ValueError, OverflowError):
+            return False
 
-        while True: (duplicate-code)
+    while True: (duplicate-code)
 src\modules\__init__.py:1:0: R0801: Similar lines in 2 files
 ==src.cli.daily_briefing:[63:71]
-==src.modules.simulation_module:[45:51]
+==src.modules.simulation_module:[38:44]
                 return None
             else:
                 continue
@@ -465,5 +442,5 @@ src\modules\__init__.py:1:0: R0801: Similar lines in 2 files
 def get_choice_input(prompt, choices): (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 7.54/10 (previous run: 7.54/10, +0.00)
+Your code has been rated at 7.66/10 (previous run: 7.54/10, +0.13)
 
