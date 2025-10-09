@@ -39,3 +39,6 @@ simulations_backup*/
 # OS
 .DS_Store
 Thumbs.db
+
+
+cleanup_whitespace.pyc

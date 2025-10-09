@@ -132,19 +132,19 @@ def temp_rotation_state_file(tmp_path):
 def mock_console_input(monkeypatch):
     """Mock console.input() pour tests interactifs"""
     inputs = []
-    
+
     def mock_input(prompt):
         if not inputs:
             return "EUR"  # Valeur par défaut
         return inputs.pop(0)
-    
+
     monkeypatch.setattr('builtins.input', mock_input)
-    
+
     class InputMocker:
         def set_inputs(self, *values):
             inputs.clear()
             inputs.extend(reversed(values))
-    
+
     return InputMocker()
 
 
@@ -152,25 +152,25 @@ def mock_console_input(monkeypatch):
 def mock_confirm_ask(monkeypatch):
     """Mock Confirm.ask() pour questions o/n"""
     answers = []
-    
+
     def mock_ask(prompt):
         if not answers:
             return False
         return answers.pop(0)
-    
+
     # Mock Rich Confirm.ask
     class MockConfirm:
         @staticmethod
         def ask(prompt):
             return mock_ask(prompt)
-    
+
     monkeypatch.setattr('rich.prompt.Confirm', MockConfirm)
-    
+
     class ConfirmMocker:
         def set_answers(self, *values):
             answers.clear()
             answers.extend(reversed(values))
-    
+
     return ConfirmMocker()
 
 
@@ -237,21 +237,21 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     print("\n" + "=" * 70)
     print("RÉSUMÉ DES TESTS")
     print("=" * 70)
-    
+
     stats = terminalreporter.stats
-    
+
     passed = len(stats.get('passed', []))
     failed = len(stats.get('failed', []))
     skipped = len(stats.get('skipped', []))
     errors = len(stats.get('error', []))
-    
+
     total = passed + failed + skipped + errors
-    
+
     if total > 0:
         success_rate = (passed / total) * 100
     else:
         success_rate = 0
-    
+
     print(f"\n✓ Réussis:  {passed}")
     print(f"✗ Échoués:  {failed}")
     print(f"⊘ Ignorés:  {skipped}")
@@ -259,7 +259,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     print(f"━━━━━━━━━━━━━━━━━━━━")
     print(f"  TOTAL:    {total}")
     print(f"\n📊 Taux de réussite: {success_rate:.1f}%")
-    
+
     if success_rate == 100 and total > 0:
         print("\n🎉 TOUS LES TESTS SONT PASSÉS !")
     elif success_rate >= 80:
@@ -268,5 +268,6 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
         print(f"\n⚠ Taux moyen ({success_rate:.1f}%) - À améliorer")
     else:
         print(f"\n✗ Taux faible ({success_rate:.1f}%) - Action requise")
-    
+
     print("=" * 70)
+
