@@ -45,3 +45,6 @@ Thumbs.db
 
 cleanup_whitespace.pyc
 #fin
+
+*_bis*.py                            # ← Fichiers backup
+*_bis*.pyc                           # ← Cache backup
