@@ -378,4 +378,3 @@ class ScenarioGenerator:
             if scenario['id'] == scenario_id:
                 return scenario
         return None
-

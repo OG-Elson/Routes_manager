@@ -927,4 +927,3 @@ if __name__ == "__main__":
         console.print("[bold red]Une erreur critique est survenue.[/bold red]")
         console.print("Consultez [cyan]app.log[/cyan] pour les dÃ©tails.")
         logging.critical(f"Erreur non gÃ©rÃ©e: {e}", exc_info=True)
-

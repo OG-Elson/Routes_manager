@@ -507,4 +507,3 @@ if __name__ == "__main__":
         analyze_transactions(args.file, mode='detail', specific_rotation=args.detail)
     else:
         analyze_transactions(args.file, mode='compact')
-

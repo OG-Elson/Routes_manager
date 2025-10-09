@@ -218,4 +218,3 @@ class RotationManager:
             'created_at': rotation.get('created_at'),
             'loop_currency_set_at': rotation.get('loop_currency_set_at')
         }
-
